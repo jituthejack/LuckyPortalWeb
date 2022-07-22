@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Library/bootstrap/css/bootstrap.css">
+  <link href="Library/fontawesome/css/all.css" rel="stylesheet">
+  <script src="Library/jquery-3.6.0.min.js"></script>
+  <script src="Library/bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="item.css">
+  <link rel="shortcut icon" href="image/ico/favicon.ico">
+  <script src="config.js"></script>
+  <script src="src/data.js"></script>
+  <script src="script.js"></script>
+
+  <style>
+    
+
+    .disabled {
+      pointer-events: none;
+      cursor: default;
+      opacity: 0.6;
+    }
+
+
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .searchIteam {
+      width: 366px;
+      z-index: 9;
+      position: absolute;
+      display: none;
+      -webkit-box-shadow: 0 1px 6px transparent;
+      box-shadow: 0 1px 6px transparent;
+      font-size: 13px;
+      color: #696e79;
+      background-color: #fff;
+      -webkit-font-smoothing: antialiased;
+      -webkit-box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+      box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+      min-height: 34px;
+      max-height: 160px;
+      /* height: 339px; */
+      top: 40px;
+      left: -40px;
+      overflow: auto;
+    }
+
+    .search-group {
+      list-style: none;
+    }
+
+    .search-group>li {
+      list-style: none;
+      padding: 2px 4px 2px 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    h3 {
+      font-size: 16px;
+      float: none;
+    }
+
+    .text-navy {
+      color: #1ab394;
+    }
+
+    .cart-product-imitation {
+      text-align: center;
+      padding-top: 30px;
+      height: 80px;
+      width: 80px;
+      background-color: #f8f8f9;
+    }
+
+    .product-imitation.xl {
+      padding: 120px 0;
+    }
+
+    .product-desc {
+      padding: 20px;
+      position: relative;
+    }
+
+    .ecommerce .tag-list {
+      padding: 0;
+    }
+
+    .ecommerce .fa-star {
+      color: #d1dade;
+    }
+
+    .ecommerce .fa-star.active {
+      color: #f8ac59;
+    }
+
+    .ecommerce .note-editor {
+      border: 1px solid #e7eaec;
+    }
+
+    table.shoping-cart-table {
+      margin-bottom: 0;
+    }
+
+    table.shoping-cart-table tr td {
+      border: none;
+      text-align: right;
+    }
+
+    table.shoping-cart-table tr td.desc,
+    table.shoping-cart-table tr td:first-child {
+      text-align: left;
+    }
+
+    table.shoping-cart-table tr td:last-child {
+      width: 80px;
+    }
+
+    .ibox {
+      clear: both;
+      margin-bottom: 25px;
+      margin-top: 0;
+      padding: 0;
+    }
+
+    .ibox.collapsed .ibox-content {
+      display: none;
+    }
+
+    .ibox:after,
+    .ibox:before {
+      display: table;
+    }
+
+    .ibox-title {
+      -moz-border-bottom-colors: none;
+      -moz-border-left-colors: none;
+      -moz-border-right-colors: none;
+      -moz-border-top-colors: none;
+      background-color: #ffffff;
+      border-color: #e7eaec;
+      border-image: none;
+      border-style: solid solid none;
+      border-width: 3px 0 0;
+      color: inherit;
+      margin-bottom: 0;
+      padding: 14px 15px 7px;
+      min-height: 48px;
+    }
+
+    .ibox-content {
+      background-color: #ffffff;
+      color: inherit;
+      padding: 15px 20px 20px 20px;
+      border-color: #e7eaec;
+      border-image: none;
+      border-style: solid solid none;
+      border-width: 1px 0;
+    }
+
+    .ibox-footer {
+      color: inherit;
+      border-top: 1px solid #e7eaec;
+      font-size: 90%;
+      background: #ffffff;
+      padding: 10px 15px;
+    }
+
+    .cartcontainer {
+      position: absolute;
+      top: 80px;
+    }
+
+    p {
+      margin: 0 0 10px;
+    }
+
+    .itemImage {
+      height: 148px;
+      width: 111px;
+    }
+
+    .form-contol {
+      padding: 0.2rem;
+    }
+
+    .h2,
+    h2 {
+      font-size: 30px;
+      float: none;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top" style="padding: 0.5rem 0 0.5rem">
+    <div class="container">
+      <div class="col-md-2">
+        <a href="items.html" class="navbar-brand">
+          <img class="default-logo responsive-img" src="image/logo.png" alt="logo">
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container cartcontainer">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="ibox">
+            <div class="ibox-title">
+              <!-- <span class="pull-right">(<strong id="numberOfProduct"></strong>) items</span> -->
+              <h5>Your cart</h5>
+            </div>
+          </div>
+          <div class="ibox-content">
+            <div id="cart-item">
+            </div>
+          </div>
+          <button class="btn btn-white">
+            <a href="items.html"><i class="fa fa-arrow-left"></i> Continue shopping</a>
+          </button>
+
+        </div>
+        <div class="col-md-3">
+          <div class="ibox">
+            <div class="ibox-title">
+              <h5>Cart Summary</h5>
+            </div>
+            <div class="ibox-content">
+              <div>
+                Total
+              </div>
+              <div>
+                <h2 class="font-bold" id="TotalAmount"></h2>
+              </div>
+
+              <hr>
+              <!-- <span class="text-muted small"> *For United States, France and Germany applicable sales tax will be applied </span> -->
+
+              <div class="m-t-sm">
+                <div class="btn-group">
+                  <a id="placeOrder1" href="#" class="btn btn-primary btn-sm" onclick="placeOrderValidation()"><i
+                      class="fa fa-shopping-cart"></i> Place Order</a>
+                  <a href="items.html" class="btn btn-white btn-sm"> Cancel</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ibox">
+            <div class="ibox-title">
+              <h5>Support</h5>
+            </div>
+            <div class="ibox-content text-center">
+              <h3><i class="fa fa-envelope"></i> mohitmenghani6@gmail.com</h3>
+              <br>
+              <span class="small">
+                Please Email us if you have any questions.
+              </span>
+            </div>
+          </div>
+
+          <!-- <div class="ibox">
+                <div class="ibox-content">
+
+                    <p class="font-bold">
+                    Other products you may be interested
+                    </p>
+                    <hr>
+                    <div>
+                        <a href="#" class="product-name"> Product 1</a>
+                        <div class="small m-t-xs">
+                            Many desktop publishing packages and web page editors now.
+                        </div>
+                        <div class="m-t text-righ">
+
+                            <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <a href="#" class="product-name"> Product 2</a>
+                        <div class="small m-t-xs">
+                            Many desktop publishing packages and web page editors now.
+                        </div>
+                        <div class="m-t text-righ">
+
+                            <a href="#" class="btn btn-xs btn-outline btn-primary">Info <i class="fa fa-long-arrow-right"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal" id="OrderPlaceSucc">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Login</h4> -->
+          <h2>Order Placed</h2>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body" style="color: green;">
+          Your Order has been placed successfully, order reference number is &nbsp;
+          <span id="success-order-reference"></span>
+          <button class="btn btn-white">
+            <a href="items.html"><i class="fa fa-arrow-left"></i> Continue shopping</a>
+          </button>
+          <button type="button" class="btn btn-success" onclick="successOrder()">Go to all orders</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="modal" id="OrderInProcess">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Login</h4> -->
+          <h2>Processing your order</h2>
+        </div>
+        <div class="modal-body">
+          <div class="loader" style="margin:0 auto;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="OrderInProcessGetCustoemr">
+    <div class="modal-dialog">
+      <div class="modal-content" style="height: 250px;"">
+        <!-- Modal Header -->
+        <div class=" modal-header">
+        <!-- <h4 class="modal-title">Login</h4> -->
+        <span> Select customer</span><br>
+        <input id="custNumber" style="width: 50%;" placeholder="Select Customer" class="desktop-searchBar" value=""
+          oninput="searchCustomer(this)">
+      </div>
+      <div class="searchIteam" style="margin: 5px 0px 1px 59px;">
+        <ul class="search-group">
+        </ul>
+      </div>
+      <div class="m-t-sm" style="margin: 155px 0px 0px 99px;">
+        <div class="btn-group">
+          <a href="#" class="btn btn-primary btn-sm" onclick="placeOrderValidation()"><i
+              class="fa fa-shopping-cart"></i> Place Order</a>
+          <a onclick="onCustValidationCancel()" class="btn btn-white btn-sm"> Cancel</a>
+        </div>
+      </div>
+      <!-- <div style="margin: 155px 0px 0px 99px;">
+          <a href="#" class="btn btn-primary btn-sm" onclick="placeOrder()"><i class="fa fa-shopping-cart"></i> Place Order</a>
+          <a href="#" class="btn btn-primary btn-sm" onclick="placeOrder()"><i class="fa fa-cancel"></i> Cancel</a>
+        </div> -->
+    </div>
+  </div>
+  </div>
+
+  <div class="modal" id="ErrorPopup">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Login</h4> -->
+          <h2 class="error">Error</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="error" id="ErrorMsg" style="margin-left: 25%;"></div>
+          <br>
+          <br>
+          <div>Please Contact <strong> mohitmenghani6@gmail.com</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Login</h4> -->
+          <h2>Login</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form class="login-form">
+            <div class="form-group" style="margin-bottom: 0px;">
+              <i class="fa fa-user"></i>
+              <input type="email" id="email" size="40" class="form-control" required="true" aria-invalid="false" placeholder="E-mail address">
+            </div>
+            <div class="error loginErrorDiv"></div>
+            <div class="form-group" style="margin-bottom: 0px;">
+              <i class="fa fa-lock"></i>
+              <input type="password" id="password" size="40" class="form-control" required="true" aria-invalid="false" placeholder="Password">
+            </div>
+            <div class="error loginErrorDiv"></div>
+            <label style="margin-bottom: 20px">
+              <input type="checkbox" id="rememberme" name="remember"> Remember me</label>
+            <div class="error" style="text-align: center;margin-top: -8px;margin-bottom: 8px;"> </div>
+            <input type="button" value="Login" class="btn btn-block btn-warning" id="submitlogin">
+            <div class="ajax-loader"></div>
+          </form>
+        </div>
+
+        <!-- Modal footer -->
+        <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div> -->
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+<script>
+
+
+  var catSubCat = "";
+  var custIDinput = "";
+  var TotalAmount = 0;
+  getCart();
+  var filteredcart;
+  var reqURl = localStorage.getItem("apiServer") + 'api/Cart';
+
+  function getCart() {
+    var token = localStorage.getItem("token");
+    var requestUrl = localStorage.getItem("apiServer") + 'api/Cart';
+    $.ajax({
+      url: requestUrl,
+      headers: { "Authorization": "Bearer " + token },
+      success: function (result) {
+        var markupitems = '';
+        $('#numberOfProduct').html(result.length);
+        TotalAmount = 0;
+        filteredcart = result;
+        if (result.length == 0) {
+          markupitems = "There are no items in your cart. Continue shopping to add the items in your cart.";
+          $("#placeOrder1").off('click').addClass('disabled');
+
+        }
+        for (var i = 0; i < result.length; i++) {
+          filteredcart[i].totalPrize = parseInt(filteredcart[i].quantity) * filteredcart[i].unitPrice * parseInt(filteredcart[i].prof_No_1);
+          TotalAmount = TotalAmount + parseFloat(filteredcart[i].totalPrize.toFixed(2));
+          var itemid = "'" + filteredcart[i].itemID + "'";
+          var boxQnt = filteredcart[i].prof_No_1;
+          markupitems += '<div class="ibox-content">'
+            + '<div class="table-responsive">'
+            + '    <table class="table shoping-cart-table">'
+            + '        <tbody>'
+            + '        <tr>'
+            + '            <td width="90">'
+            + '     <img  src="' + filteredcart[i].imagePath + filteredcart[i].imageName + '" class="image-base-imgResponsive itemImage" alt="image" >  '
+            + '            </td>'
+            + '            <td class="desc">'
+            + '                <h3>'
+            + '                    <a href="#" class="text-navy">'
+            + filteredcart[i].shorT_DESCR
+            + '                    </a>'
+            + '                </h3>'
+            + '                <p class="small">'
+            + filteredcart[i].lonG_DESCR
+            + '                </p>'
+            + '                <dl class="small m-b-none">'
+            + '                    <dt>Description lists</dt>'
+            + '                    <dd>' + filteredcart[i].descr + '</dd>'
+            + '                </dl>'
+            + '                <div class="m-t-sm" >'
+            + '                   <dt>Box Quantity &nbsp' + boxQnt + '</dt>'
+            + '                </div>'
+            + '                <div class="m-t-sm" >'
+            + '                   <dt style="display: flex;"><span style="padding: 8px 0px;">Quantity </span>  <input style="width: 90px;margin-left: 36px;" type="number" id="item-' + i + '-quantity"  class="form-control" onchange="quantityChange(' + i + ',' + itemid + ')"   value="' + parseInt(filteredcart[i].quantity) + '"></dt>'
+            + '                </div>'
+            + '                <div class="m-t-sm" >'
+            + '                    <a class="text-muted" style=" cursor: pointer;" onclick="removeCart(' + i + ',' + itemid + ')"><i class="fa fa-trash"></i> Remove item</a>'
+            + '                </div>'
+            + '            </td>'
+            + '            <td style="padding-top: 16px;">'
+            + '                $ ' + Number(filteredcart[i].prC_1).toFixed(2)
+            + '            </td>'
+            //  +'            <td width="65">'
+            //  +'                <input type="number" id="item-' + i + '-quantity"  class="form-control" onchange="quantityChange('+ i +',' + itemid + ')"   value="'+parseInt(filteredcart[i].quantity)+'">'
+            //  +'            </td>'
+            + '            <td style="padding-top: 13px;">'
+            + '                <h4>'
+            + '                   $' + filteredcart[i].totalPrize.toFixed(2)
+            + '                </h4>'
+            + '            </td>'
+            + '        </tr>'
+            + '        </tbody>'
+            + '    </table>'
+            + '</div>'
+            + '</div>'
+        }
+        $('#cart-item').html(markupitems);
+        $('#TotalAmount').html('$' + TotalAmount.toFixed(2));
+      }
+    })
+  }
+
+  function removeCart(index, itemID) {
+    itemTempArr = {
+      "ItemID": itemID,
+      //"item_No": iteM_NO,
+      "quantity": 0
+    }
+    updateCart(itemTempArr);
+  }
+
+
+
+  function updateCart(item) {
+    var token = localStorage.getItem("token");
+    var requestUrl = localStorage.getItem("apiServer") + 'api/Cart';
+    $.ajax({
+      type: 'PATCH',
+      url: requestUrl,
+      data: JSON.stringify(item),
+      contentType: 'application/json',
+      headers: { "Authorization": "Bearer " + token },
+      success: function (result) {
+        getCart();
+      }
+    })
+  }
+  function searchCustomer(_this) {
+    if (_this.value.length == 0) {
+      $('.search-group').html('');
+      $('.searchIteam').hide();
+    } else {
+      filter = _this.value.toLowerCase();
+      $('.searchIteam').show();
+      var token = localStorage.getItem("token");
+      var requestUrl = localStorage.getItem("apiServer") + 'api/user/customers?Page=' + '&customerNoOrNameFilter=' + _this.value.toLowerCase();
+      $.ajax({
+        url: requestUrl,
+        headers: { "Authorization": "Bearer " + token },
+        success: function (result) {
+          var filterdList = result;
+          serachitembind(filterdList);
+        }
+      })
+    }
+  }
+  function serachitembind(list) {
+    var markup = '';
+    custIDinput = '';
+    if (list.length == 0) {
+      $('.search-group').html('No matching customer found.');
+
+    } else {
+      for (var i = 0; i < list.length; i++) {
+        var item = list[i];
+        var tb = '<table id=' + item.id + ' class="cust" style="width:100%"><tr><td class="custNo" style="width:80px">' + item.cusT_NO + '</td><td class="custName">' + item.nam + '</td></tr></table>'
+        markup += '<li style="padding: 6px 0px; class="search-suggestion">' + tb + '</li>';
+      }
+      markup = '<div id="search-v">' + markup + ' </div>';
+      $('.search-group').html(markup);
+      if (document.getElementById("search-v"))
+        document.getElementById("search-v").addEventListener("click", SearchItemClicked);
+    }
+  }
+  function SearchItemClicked(e) {
+    if (e.target && e.target) {
+      var custId = e.target.closest('.cust').id;
+      var custNo = $('#' + custId).find('.custNo')[0].innerHTML
+      $('#custNumber')[0].value = custNo;
+      custIDinput = custId;
+      $('.search-group').html('');
+      $('.searchIteam').hide();
+    }
+  }
+  function placeOrderValidation() {
+    var user = localStorage.getItem("user");
+    user = JSON.parse(user)
+    if (user && (user.userRole === 'ApiUser' || user.userRole === 'SuperAdmin') && !custIDinput) {
+      $('#OrderInProcessGetCustoemr').modal('show');
+    } else {
+      placeOrder();
+    }
+  }
+
+  function onCustValidationCancel() {
+    $('.search-group').html('');
+    $('.searchIteam').hide();
+    custIDinput = '';
+    $('#custNumber')[0].value = '';
+    $('#OrderInProcessGetCustoemr').modal('hide');
+  }
+
+
+  function placeOrder() {
+
+    var user = localStorage.getItem("user");
+    user = JSON.parse(user)
+    if (user && (user.userRole === 'ApiUser' || user.userRole === 'SuperAdmin') && !custIDinput) {
+      $('#OrderInProcessGetCustoemr').modal('show');
+    }
+    else {
+      $('#OrderInProcessGetCustoemr').modal('hide');
+      $('#custNumber')[0].value = '';
+      $('#OrderInProcess').modal('show');
+      var token = localStorage.getItem("token");
+      var ordertobesend = []
+      for (var i = 0; i < filteredcart.length; i++) {
+        var TempArr = {
+          "ItemID": filteredcart[i].itemID.toString(),
+          //"item_No": iteM_NO,
+          "quantity": filteredcart[i].quantity.toString()
+        }
+        ordertobesend.push(TempArr);
+      }
+      $.ajax({
+        url: localStorage.getItem("apiServer") + 'api/Order?customerID=' + custIDinput,
+        dataType: 'json',
+        type: 'POST',
+        data: JSON.stringify({ "Items": ordertobesend }),
+        contentType: 'application/json',
+        headers: { "Authorization": "Bearer " + token },
+        success: function (data) {
+          $('#OrderInProcess').modal('hide');
+          $('#success-order-reference').html(data.orderRefNumber);
+          $('#OrderPlaceSucc').modal('show');
+          getCart();
+          $('.search-group').html('');
+          $('.searchIteam').hide();
+          custIDinput = '';
+          $('#custNumber')[0].value = custIDinput;
+          $('#OrderInProcessGetCustoemr').modal('hide');
+        },
+        error: function (data) {
+          $('#OrderInProcess').modal('hide');
+          $('#ErrorPopup').modal('show');
+          $('#ErrorMsg').html(data.statusText);
+          console.log(data);
+        }
+      })
+    }
+  }
+
+  function successOrder() {
+    window.location.href = "order.html";
+  }
+
+
+
+  function quantityChange(index, itemID) {
+    var quantity = $('#item-' + index + '-quantity').val();
+    itemTempArr = {
+      "ItemID": itemID,
+      //"item_No": iteM_NO,
+      "quantity": quantity
+    }
+    updateCart(itemTempArr);
+  }
+  $(".modal").modal({
+    show: false,
+    backdrop: 'static'
+  });
+
+</script>

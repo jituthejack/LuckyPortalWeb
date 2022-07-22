@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Library/bootstrap/css/bootstrap.css">
+    <link href="Library/fontawesome/css/all.css" rel="stylesheet">
+    <script src="Library/jquery-3.6.0.min.js"></script>
+    <script src="Library/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="item.css">
+    <!-- <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/22.1.3/css/dx.common.css">
+    <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/22.1.3/css/dx.light.css"> -->
+    <!-- <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/22.1.3/js/dx.all.js"></script> -->
+
+    <link rel="shortcut icon" href="image/ico/favicon.ico">
+
+
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/ag-grid-enterprise@27.3.0/dist/ag-grid-enterprise.min.js"></script>
+    <link rel="shortcut icon" href="image/ico/favicon.ico">
+    <script src="config.js"></script>
+    <style>
+        #gridContainer {
+            margin: 0px 40px;
+            width: 95%;
+        }
+
+
+        .dx-datagrid .dx-data-row>td.bullet {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        table.dataTable {
+            margin: 0px !important;
+        }
+
+        body {
+            font-family: Arial;
+        }
+
+        .verticalTab {
+            float: left;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            width: 15%;
+            height: 50%;
+        }
+
+        /* Style the buttons inside the tab */
+        .verticalTab button {
+            display: block;
+            background-color: inherit;
+            color: black;
+            padding: 22px 16px;
+            width: 100%;
+            border: none;
+            outline: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+
+        /* Style the tab */
+        .horizontalTab {
+            display: flex;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .horizontalTab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .horizontalTab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .horizontalTab button.active {
+            background-color: #ccc;
+        }
+
+        /* Change background color of buttons on hover */
+        .verticalTab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .verticalTab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .childTabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+            height: 500px;
+        }
+
+        /* Style the tab content */
+        .parentTabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .searchSp {
+            background-color: #f6f6f6;
+            display: none;
+            padding: 0px;
+            cursor: pointer;
+            position: absolute;
+            z-index: 1;
+            height: 155px;
+            overflow: scroll;
+            width: 253px;
+        }
+
+        .dropdown-content {
+            color: black;
+            text-decoration: none;
+            display: block;
+            padding-left:0px;
+        }
+
+        .dropdown-content li:hover {
+            background-color: #ddd;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" style="padding: 0.5rem 0 0.5rem">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="items.html" class="navbar-brand">
+                    <img class="default-logo responsive-img" src="image/logo.png" alt="logo">
+                </a>
+            </div>
+            <ul class="nav navbar-nav navbar-right right_nav pull-right" style="flex-direction: row;">
+                <hr>
+                <!-- <li class="nav-item">
+                    <div class="desktop-query">
+                        <input placeholder="Search for products, brands and more" class="desktop-searchBar" value=""
+                            oninput="serachitem(this)">
+                        <a class="desktop-submit">
+                            <i class="fa fa-search sprites-search" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="searchIteam">
+                        <ul class="search-group">
+
+                        </ul>
+                    </div>
+                </li> -->
+                <hr>
+                <li class="nav-item">
+                    <a href="#" class="icons">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <hr>
+                <!-- <li class="nav-item">
+                    <a href="#" class="icons">
+                         <i class="fa fa-heart-o" aria-hidden="true"></i>
+                         <span class="desktop-badge desktop-melon">1</span>
+                    </a>
+                </li> -->
+                <hr>
+                <!-- <li class="nav-item">
+                    <a href="cart.html" class="icons">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="desktop-badge desktop-melon" id="cartCount">0</span>
+                    </a>
+                </li> -->
+                <hr>
+            </ul>
+        </div>
+    </nav>
+    <div class="row" style="padding-top: 80px;">
+        <div class="verticalTab col-md-2">
+            <button id="tbSalesPersons" class="parentTablinks" onclick="OnParentTabChange(event, 'salesPersons')">Sales
+                Person</button>
+            <button id="tbCustomers" class="parentTablinks"
+                onclick="OnParentTabChange(event, 'customers')">Customers</button>
+            <button id="tbCategories" class="parentTablinks"
+                onclick="OnParentTabChange(event, 'categories')">Categories</button>
+            <button id="tbOrdrs" class="parentTablinks" onclick="OnParentTabChange(event, 'orders')">Orders</button>
+            <button id="tbItems" class="parentTablinks" onclick="OnParentTabChange(event, 'Items')">Items</button>
+        </div>
+        <div class="col-md-10">
+            <div id="salesPersons" class="parentTabcontent">
+                <div class="horizontalTab">
+                    <button id="tbOnboardedSp" class="childTablinks" onclick="OnChildTabChange(event, 'onBoardedSp')">On Boarded</button>
+                    <button id="tbInviteSp" class="childTablinks" onclick="OnChildTabChange(event, 'inviteSp')">Invite</button>
+                    <button id="tbInvitedSp" class="childTablinks" onclick="OnChildTabChange(event, 'invitedSp')">Invited</button>
+                    <button id="tbDisabledSp" class="childTablinks" onclick="OnChildTabChange(event, 'disabledSp')">Disabled</button>
+                    <button id="tbAlldSp" class="childTablinks" onclick="OnChildTabChange(event, 'allSp')">All</button>
+                </div>
+                <div id="onBoardedSp" class="childTabcontent">
+                    <div id="gdOnBoardedSp" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="inviteSp" class="childTabcontent">
+                    <div id="gdInviteSP" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="invitedSp" class="childTabcontent">
+                    <div id="gdInvitedSP" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="disabledSp" class="childTabcontent">
+                    <div id="gdDisabledSp" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="allSp" class="childTabcontent">
+                    <div id="gdAllSp" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+            </div>
+            <div id="customers" class="parentTabcontent">
+                <div class="horizontalTab">
+                    <button id="tbOnboardedCustomer" class="childTablinks" onclick="OnChildTabChange(event, 'onboardedCustomer')">On Boarded</button>
+                    <button id="tbInvteCustomer" class="childTablinks" onclick="OnChildTabChange(event, 'invteCustomer')">Invite</button>
+                    <button id="tbInvitedCustomer" class="childTablinks"onclick="OnChildTabChange(event, 'invitedCustomer')">Invited</button>
+                    <button id="tbDisabledCustomer" class="childTablinks"onclick="OnChildTabChange(event, 'disabledCustomer')">Disabled</button>
+                    <button id="tbAllCustomer" class="childTablinks"onclick="OnChildTabChange(event, 'allCustomer')">All</button>
+                </div>
+                <div id="onboardedCustomer" class="childTabcontent">
+                    <div id="gdOnboardedCustomer" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="invteCustomer" class="childTabcontent">
+                    <div id="gdinvteCustomer" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="invitedCustomer" class="childTabcontent">
+                    <div id="gdInvitedCustomer" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="disabledCustomer" class="childTabcontent">
+                    <div id="gdDisabledCustomer" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="allCustomer" class="childTabcontent">
+                    <div id="gdAllCustomer" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+            </div>
+            <div id="categories" class="parentTabcontent">
+                <div class="horizontalTab">
+                    <button id="tbvisibleCategories" class="childTablinks"
+                        onclick="OnChildTabChange(event, 'visibleCategories')">Visible Categories</button>
+                    <button id="tbhiddenCategories" class="childTablinks"
+                        onclick="OnChildTabChange(event, 'hiddenCategories')">Hidden Categories</button>
+                    <button id="tballCategories" class="childTablinks"
+                        onclick="OnChildTabChange(event, 'allCategories')">All Categories</button>
+                </div>
+                <div id="visibleCategories" class="childTabcontent">
+                    <div id="gdVisibleCat" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="hiddenCategories" class="childTabcontent">
+                    <div id="gdHiddenCat" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="allCategories" class="childTabcontent">
+                    <div id="gdAllCat" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+            </div>
+            <div id="orders" class="parentTabcontent">
+                <div id="allOrders" class="childTabcontent">
+                    <div id="gdOrders" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+            </div>
+            <div id="items" class="parentTabcontent">
+                <div id="allItems" class="childTabcontent">
+                    <div id="gdAllCat" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="confirmChoice" role="successMsg">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <!-- <h4 class="modal-title">Login</h4> -->
+                    <h2 style="margin: auto;">Confirm your choice</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- Modal content-->
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="confirmYes">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="successMsg" role="successMsg">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Success</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="userValidation" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <!-- <h4 class="modal-title">Login</h4> -->
+                    <h2 style="margin: auto;">Please Input Required Details below</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form onsubmit="return validate()">
+                        <div class="row">
+                            <label style="width: 25%;text-align: right;margin-top: 10px;"> User ID</label>
+                            <input required readonly type="text" id="userId" size="40" class="form-control" required="true" aria-invalid="false" style="width: 65%;">
+                        </div>
+                        <div class="row">
+                            <label style="width: 25%;text-align: right;margin-top: 10px;"> First Name</label>
+                            <input required type="text" id="firstName" size="40" class="form-control" required="true" aria-invalid="false" style="width: 65%;">
+                        </div>
+                        <div class="row">
+                            <label style="width: 25%;text-align: right;margin-top: 10px;"> Last Name</label>
+                            <input type="text" id="lastName" size="40" class="form-control" aria-invalid="false" style="width: 65%;">
+                        </div>
+                        <div class="row">
+                            <label style="width: 25%;text-align: right;margin-top: 10px;"> Email</label>
+                            <input required type="email" id="userEmail" size="40" class="form-control" required="true" aria-invalid="false" style="width: 65%;">
+                        </div>
+                        <div class="row">
+                            <label style="width: 25%;text-align: right;margin-top: 10px;"> User Name</label>
+                            <input required minlength="4" type="text" id="userName" size="40" class="form-control" required="true" oninput="isValidUserName(this)" aria-invalid="false" style="width: 65%;">
+                        </div>
+                        <div class="row" id="slsRepGrp" style="display: none;">
+                            <label style="width: 25%;text-align: right;margin-top: 10px;"> Sales Rep</label>
+                            <input minlength="4" type="text" id="slsRepName" size="40" class="form-control" aria-invalid="false" style="width: 65%;">
+                            <div class="searchSp" style="margin: 45px 0px 1px 130px;">
+                                <ul class="search-group dropdown-content">
+                                </ul>   
+                            </div>
+                        </div>
+                        <div id="valiationError" class="error loginErrorDiv"></div>
+                        <!-- <div id="userNameError" class="error" style="text-align: center;margin-top: -8px;margin-bottom: 8px;"> </div> -->
+                        <input type="submit" value="Save and Invite" class="btn btn-block btn-warning" id="saveAndInvite">
+                        <div id="saveLoader" style="top: 33%;left: 33%;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript" src="Admin.js"></script>

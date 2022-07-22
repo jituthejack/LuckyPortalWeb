@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Library/bootstrap/css/bootstrap.css">
+  <link href="Library/fontawesome/css/all.css" rel="stylesheet">
+  <script src="Library/jquery-3.6.0.min.js"></script>
+  <script src="Library/bootstrap/js/bootstrap.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="item.css">
+  <link rel="shortcut icon" href="image/ico/favicon.ico">
+  <script src="config.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <style>
+    .sub-menu-profile {
+      position: absolute;
+      padding: 5px 25px;
+      left: 2px;
+      box-shadow: 0px 2px #ff3f6c;
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top" style="padding: 0.5rem 0 0.5rem">
+    <div class="container">
+      <div class="navbar-header">
+        <a href="items.html" class="navbar-brand">
+          <img class="default-logo responsive-img" src="image/logo.png" alt="logo">
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right right_nav pull-right" style="flex-direction: row;">
+        <hr>
+        <li class="nav-item">
+          <div class="desktop-query">
+            <input id="productSearch" placeholder="Search for products" class="desktop-searchBar" value="">
+            <a class="desktop-submit">
+              <i class="fa fa-search sprites-search" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div class="searchIteam">
+            <ul class="search-group">
+
+            </ul>
+          </div>
+        </li>
+        <hr>
+        <li class="nav-item menu-profile">
+          <a href="#" class="icons">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </a>
+          <ul role="menu" class="sub-menu-profile dropdown-menu">
+            <li id="menu-item-5" class="menu-item">
+              <a title="Profile">Profile</a>
+            </li>
+            <li id="menu-item-5" class="menu-item">
+              <a href="order.html" title="Profile">My Orders</a>
+            </li>
+            <li id="menu-item-6" class="menu-item">
+              <a title="Log out" onclick="logOutUser()">Log out</a>
+            </li>
+          </ul>
+        </li>
+        <hr>
+        <!-- <li class="nav-item">
+                    <a href="#" class="icons">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <div class="cart-menu-text">Profile</div>
+                    </a>
+                    <ul role="menu" class="sub-menu-profile dropdown-menu">                
+                      <li id="menu-item-5" class="menu-item">
+                        <a title="Profile" class="dropdown-menu-text">Profile</a>
+                      </li>
+                      <li id="menu-item-6" class="menu-item">
+                        <a title="Log out" class="dropdown-menu-text">Log out</a>
+                      </li>
+                    </ul>
+                </li>
+                <hr>
+                <!-- <li class="nav-item">
+                    <a href="#" class="icons">
+                         <i class="fa fa-heart-o" aria-hidden="true"></i>
+                         <span class="desktop-badge desktop-melon">1</span>
+                    </a>
+                </li> -->
+        <hr>
+        <li class="nav-item">
+          <a href="cart.html" class="icons">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="desktop-badge desktop-melon" id="cartCount">0</span>
+            <div class="cart-menu-text">Cart</div>
+          </a>
+        </li>
+        <hr>
+      </ul>
+    </div>
+  </nav>
+  <div class="row">
+
+    <div class="col-md-3 category-listing" style="margin-top:100px;">
+      <ul id="menu-v">
+        <li>
+          <a href="/cat/16/" class=" arrow">Braids &amp; Hair</a>
+          <ul class="sub" style="left: 155px; top: 0px; display: none; visibility: hidden;">
+            <li><a href="/cat/16/465/">Afro Kinky</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-9  listing-section" style="margin-top:100px;">
+
+    </div>
+
+
+  </div>
+
+
+  <!-- <div class=" col-md-10 listing-section">  </div> -->
+
+
+
+  <!-- Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Login</h4> -->
+          <h2>Login</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form class="login-form">
+            <div class="form-group" style="margin-bottom: 0px;">
+              <i class="fa fa-user"></i>
+              <input type="email" id="email" size="40" class="form-control" required="true" aria-invalid="false"
+                placeholder="E-mail address">
+            </div>
+            <div class="error loginErrorDiv"></div>
+            <div class="form-group" style="margin-bottom: 0px;">
+              <i class="fa fa-lock"></i>
+              <input type="password" id="password" size="40" class="form-control" required="true" aria-invalid="false"
+                placeholder="Password">
+            </div>
+            <div class="error loginErrorDiv"></div>
+            <label style="margin-bottom: 20px">
+              <input type="checkbox" id="rememberme" name="remember"> Remember me
+            </label>
+            <div class="error" style="text-align: center;margin-top: -8px;margin-bottom: 8px;"> </div>
+            <input type="button" value="Login" class="btn btn-block btn-warning" id="submitlogin">
+            <div class="ajax-loader"></div>
+          </form>
+        </div>
+
+        <!-- Modal footer -->
+        <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div> -->
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+<script>
+  function logOutUser() {
+    localStorage.removeItem("token");
+    window.open('index.html', '_self');
+  }
+  $(document).ready(function () {
+    $(".menu-profile").mouseover(function () {
+      $(".sub-menu-profile").show();
+    });
+    $(".menu-profile").mouseleave(function () {
+      $(".sub-menu-profile").hide();
+    });
+  })
+
+
+
+  var catSubCat = "";
+  var filter = "";
+
+  var markupitems = "";
+  var pageNo = 1;
+  var RowsCount = 100;
+  var windowHeight = 0;
+  initData();
+  function onImgError(source) {
+    source.src = 'image/imagenotfound.png';
+  }
+  function initData() {
+    RowsCount = localStorage.getItem("Rows");
+  }
+
+  LoadItemCategories();
+  markupitems = '';
+  LoadItems();
+  getCart();
+  function LoadItems() {
+    var token = localStorage.getItem("token");
+    var requestUrl = localStorage.getItem("apiServer") + 'api/item?Page=' + pageNo + '&Rows=' + RowsCount + '&catSubcat=' + catSubCat + '&filter=' + filter;
+    $.ajax({
+      url: requestUrl,
+      type: "GET",
+      headers: { "Authorization": "Bearer " + token },
+      success: function (result) {
+        windowHeight = window.innerHeight
+        if (result.length == 0) {
+          return;
+        }
+        var data = result;
+        for (var i = 0; i < data.length; i++) {
+          var item = data[i];
+          var itemNoStr = "'" + item.iteM_NO + "'";
+          var itemid = "'" + item.id + "'";
+          var boxQnt = item.proF_NO_1;
+          if (!boxQnt || boxQnt == 0) {
+            boxQnt = 1;
+          }
+          markupitems += '<div class="product">'
+            + '<div class="image-box">'
+            + '<img class="images" src="' + item.imagePath + item.imageName + '" alt="" onerror="onImgError(this);"" width="100%" height="600">'
+            + '</div>'
+            + '<div class="text-box">'
+            + '    <h2 class="item">' + item.shorT_DESCR + ' </h2>'
+            + '    <h3 class="price">$ ' + Number(item.prC_1).toFixed(2) + '</h3>'
+            + '    <p class="description ellipsis" title="' + item.lonG_DESCR + '">' + item.lonG_DESCR + '</p>'
+            + '    <label>Box Quantity:</label>'
+            + '    <input type="text" disabled value="' + boxQnt + '">'//
+            + '    <label for="item-' + i + '-quantity">Quantity:</label>'
+            + '    <input type="number" min="1" name="item-' + i + '-quantity" id="item-' + i + '-quantity" value="1" onchange="quantityChange(' + i + ',' + itemid + ')">'
+            + '    <button type="button" name="item-' + i + '-button" id="item-' + i + '-button" onclick="AddToBag(' + i + ',' + itemid + ',' + itemNoStr + ')">Add to Cart</button>'
+            + '</div>'
+            + ' </div>'
+        }
+        $('.listing-section').html(markupitems);
+      }
+    });
+  }
+
+
+  function LoadItemCategories() {
+    $.ajax({
+      url: localStorage.getItem("apiServer") + 'api/item/categories',
+      type: 'GET',
+      headers: { "Authorization": "Bearer " + localStorage.getItem("token") },
+      success: function (result) {
+        var markup = '';
+        var data = result;
+        for (var i = 0; i < data.length; i++) {
+          var item = data[i];
+          markup += '<li id = "' + item.cateG_COD + '/">' + item.descr + '<i class="fa-solid fa-angle-right" style="float: right;padding: 4px;"   ></i>';
+          if (item.subCategories && item.subCategories.length > 0) {
+            markup = markup + ' <ul class="sub" style="left: 155px; top: 0px; display: none; visibility: hidden;">'
+            for (var j = 0; j < item.subCategories.length; j++) {
+              var subCat = item.subCategories[j];
+              markup = markup + '<li id= "' + subCat.cateG_COD + '/' + subCat.subcaT_COD + '/">' + subCat.descr + '</li> '
+            }
+            markup = markup + '</ul>'
+          }
+          markup = markup + '</li>';
+        }
+        markup = '<ul id="menu-v">' + markup + ' </ul>';
+        $('.category-listing').html(markup);
+        if (document.getElementById("menu-v"))
+          document.getElementById("menu-v").addEventListener("click", categoryClicked);
+
+        $('ul#menu-v > li').mouseover(function () {
+          $(this.children[1]).css({ 'display': 'block', 'visibility': 'visible' });
+        })
+
+        $('ul#menu-v > li').mouseout(function () {
+          $('.sub').css({ 'display': 'none', 'visibility': 'hidden' });
+        })
+
+        $('#menu-v').css("height", $('.listing-section').height());
+      }
+    });
+  }
+
+  function categoryClicked(e) {
+    console.log(e.target.nodeName)
+    if (e.target && e.target.nodeName == "LI") {
+      catSubCat = e.target.id;
+      markupitems = '';
+      filter = '';
+      LoadItems();
+    }
+  }
+
+  var iteM_NO_Arr = [];
+  function AddToBag(index, itemID, iteM_NO) {
+    var itemTempArr = [];
+    var quantity = $('#item-' + index + '-quantity').val();
+    var cartButton = $('#item-' + index + '-button');
+    if (cartButton.html() == 'Add to Cart' || cartButton.html() == 'Update to Cart') {
+      $('#item-' + index + '-button').html('Remove from Cart');
+      itemTempArr = {
+        "ItemID": itemID,
+        //"item_No": iteM_NO,
+        "quantity": quantity
+      }
+      updateCart(itemTempArr);
+
+    } else {
+      $('#item-' + index + '-button').html('Add to Cart');
+      let removedItem = iteM_NO_Arr.filter(items => items.item_No !== iteM_NO);
+      iteM_NO_Arr = removedItem;
+      itemTempArr = {
+        "ItemID": itemID,
+        //"item_No": iteM_NO,
+        "quantity": 0
+      }
+      updateCart(itemTempArr);
+    }
+    // Put the object into storage
+    //localStorage.setItem('cartObject', JSON.stringify(iteM_NO_Arr));
+    // Retrieve the object from storage
+    //var retrievedObject = localStorage.getItem('cartObject');
+
+
+  }
+
+  function updateCart(item) {
+    var token = localStorage.getItem("token");
+    var requestUrl = localStorage.getItem("apiServer") + 'api/Cart';
+    $.ajax({
+      type: 'PATCH',
+      url: requestUrl,
+      data: JSON.stringify(item),
+      contentType: 'application/json',
+      headers: { "Authorization": "Bearer " + token },
+      success: function (result) {
+        getCart();
+      }
+    })
+  }
+
+
+  function quantityChange(index, itemID) {
+    var quantity = $('#item-' + index + '-quantity').val();
+    let filtered = iteM_NO_Arr.filter(items => items.itemID == itemID);
+    if (filtered.length > 0) {
+      filtered[0].quantity = quantity;
+      $('#item-' + index + '-button').html('Update to Cart');
+      // iteM_NO_Arr = filtered;
+      //localStorage.setItem('cartObject', JSON.stringify(iteM_NO_Arr));
+    }
+  }
+
+
+  $('.searchIteam').hide();
+
+  function getCart() {
+    var token = localStorage.getItem("token");
+    var requestUrl = localStorage.getItem("apiServer") + 'api/Cart';
+    $.ajax({
+      url: requestUrl,
+      headers: { "Authorization": "Bearer " + token },
+      success: function (result) {
+        $('#cartCount').html(result.length);
+        iteM_NO_Arr = result;
+      }
+    })
+  }
+
+  //var serachList = brandsList.Perfumes.concat(brandsList.makups, brandsList.Cosmetics);
+  function serachitembind(list) {
+    var markup = '';
+    for (var i = 0; i < list.length; i++) {
+      var item = list[i].descr;
+      markup += '<li class="search-suggestion">' + list[i].descr + '</li>';
+    }
+    markup = '<div id="search-v">' + markup + ' </div>';
+    $('.search-group').html(markup);
+    if (document.getElementById("search-v"))
+      document.getElementById("search-v").addEventListener("click", SearchItemClicked);
+  }
+
+  function SearchItemClicked(e) {
+    console.log(e.target.nodeName)
+    if (e.target && e.target.innerHTML) {
+      catSubCat = '';
+      filter = e.target.innerHTML;
+      markupitems = '';
+      LoadItems();
+    }
+  }
+  ;
+
+  // Init a timeout variable to be used below
+  let timeout = null;
+  let input = document.getElementById('productSearch');
+  input.addEventListener('keyup', function (e) {
+    // Clear the timeout if it has already been set.
+    // This will prevent the previous task from executing
+    // if it has been less than <MILLISECONDS>
+    clearTimeout(timeout);
+
+    // Make a new timeout set to go off in 1000ms (1 second)
+    timeout = setTimeout(function () {
+      serachitem(input.value);
+    }, 1000);
+  });
+
+  function serachitem(value) {
+    if (value.length == 0) {
+      catSubCat = '';
+      filter = '';
+      markupitems = '';
+      LoadItems();
+      $('.searchIteam').hide();
+
+    } else {
+      catSubCat = '';
+      filter = value.toLowerCase();
+      markupitems = '';
+      LoadItems();
+    }
+  }
+
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY + windowHeight + 90 >= document.documentElement.scrollHeight) {
+      windowHeight = 0;
+      pageNo = pageNo + 1;
+      RowsCount = 100;
+      LoadItems();
+    }
+  })
+
+</script>
+
+
+<style>
+  .sub-menu-profile {
+    position: absolute !important;
+    padding: 5px 25px;
+    top: 50px;
+    left: 2px !important;
+    box-shadow: 0px 2px #ff3f6c;
+  }
+
+  .cart-menu-text {
+    font-size: 9px;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 6px;
+  }
+
+  .menu-profile:hover {
+    border-bottom: 2px solid #ff3f6c;
+  }
+
+  .menu-item {
+    cursor: pointer;
+  }
+
+  .nav li a {
+    text-transform: capitalize !important;
+    color: #000;
+  }
+
+  .dropdown-menu-text:hover {
+    color: #ff3f6c;
+  }
+</style>

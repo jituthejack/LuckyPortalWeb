@@ -1,0 +1,411 @@
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #ebecf0;
+    overflow-x: hidden;
+}
+
+body .navbar {
+    min-height: 55px;
+    background: 0 0;
+    padding: 20px 0 24px;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    transition: all .3s linear 0s;
+    background: #ebecf0;    
+}
+
+.top-banner {
+    padding-top: 190px;
+    opacity: 1;
+}
+
+#home{
+    background-image: url(image/luckyshoppingcenter1.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 800px;
+}
+
+#home h2{
+    color: #bb1919;
+}
+#home p{
+    color: #fff;
+}
+
+.navbar-fixed-top{
+    background-color: #fff !important;
+}
+.text-center {
+    text-align: center;
+}
+.content-seprator:after {
+    content: '';
+    width: 82px;
+    height: 6px;
+    display: block;
+    margin: 0 auto;
+    background: #dedede; 
+    margin-top: 12px;   
+}
+
+section h2 {
+    margin: 0 0 20px;
+    font: 600 50px/1 "Poppins",sans-serif;
+    letter-spacing: -3px;
+    color: #374048;
+}
+
+.navbar-fixed-top{
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+.default-logo{
+    height: 55px;
+    width: 200px;
+}
+
+.navbar-header {
+    float: left;
+}
+
+.navbar-collapse {
+    display: block !important;
+    height: auto !important;
+    padding-bottom: 0;
+    overflow: visible !important;
+}
+
+.navbar-nav>li {
+    float: left;
+    position: relative;
+    display: block;
+}
+
+.nav > li{
+    font: 300 14px/26px "Poppins",sans-serif;
+    color: #82898f;
+}
+
+.nav li a {
+    color: #8f969d;
+    text-transform: uppercase !important;
+}
+
+a, .btn, button {
+    text-decoration: none !important;
+    outline: none;
+    transition: all .3s linear 0s;
+}
+
+#main-navbar .nav li a {
+    padding: 0 17px;
+    text-transform: uppercase;
+    font: 500 16px/40px "Poppins",sans-serif;
+}
+
+.dropdown-toggle:hover{
+    display: block;
+}
+
+.navbar-right .dropdown-menu {
+    left: auto;
+    right: 0;
+    width: 160px;
+}
+.nav li a.active {
+    color: #0084ff;
+}
+
+.navbar-right {
+    margin-right: -15px;
+}
+.btn-warning {
+    background: #f62;
+}
+
+.navbar-nav-new {
+    float: left;
+    margin: 0;
+}
+.btn-warning {
+    text-transform: uppercase;
+    font: 500 16px/40px "Poppins",sans-serif;
+    padding: 0 35px;
+    border-radius: 30px;
+    color: #fff;
+    border: none;
+}
+section p {
+    max-width: 780px;
+    margin: 0 auto 40px;
+    font: 300 20px/41px "Poppins",sans-serif;
+    letter-spacing: -.2px;
+    color: #8a9095;
+}
+.luckywholesalecenter{
+    margin: 0 auto 61px;
+    width: 50%;
+}
+img{
+    animation-name: zoomIn;
+}
+
+.brandlist{
+    height: 90px;
+    background-color: #E2FFFD;
+    color: #000;
+    margin: 0px 10px 25px 10px;
+    transition: all 1s ease;
+}
+.brandlist h4{
+    margin-top: 15px;;
+}
+.brandlist div{
+    display: inline-block;
+    animation: marquee 30s linear infinite;
+}
+
+
+@keyframes marquee {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+.brantitem { 
+    display: inline-block;
+}
+
+.brantitem{
+    margin: 0px 25px;
+    font: 400 20px/1 "Poppins",sans-serif;
+    font-style: oblique;
+    cursor: pointer;
+}
+.brantitem img{
+    height: 25px;
+}
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #333;
+    background-color: #fff;
+    text-align: center;
+    padding: 10px 10px 0px 10px;
+ }
+ .pull-left{
+     float: left;
+ }
+ .pull-right{
+     float: right;
+ }
+
+ .seprator{
+     height: 50px;
+ }
+ .aboutus p{
+    margin-bottom: 30px;
+    font: 300 15px/29px "Poppins",sans-serif;
+ }
+ .aboutus-sign{
+    margin-bottom: 10px;
+ }
+ .getintouch{
+    padding: 20px 35px;
+ }
+ .getintouch>.nav{
+    display: block;
+ }
+
+ .getintouch ul li i {
+    width: 30px;
+    float: left;
+    margin-left: -30px;
+    line-height: 32px;
+}
+
+.fa.fa-facebook, .fa.fa-twitter, .fa.fa-instagram {
+    font-family: "Font Awesome 5 Brands";
+    font-weight: 400;
+}
+.fa.fa-facebook:before {
+    content: "\f39e";
+}
+
+.fa-instagram:before {
+    content: "\f16d";
+}
+
+.social-links ul li a {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    line-height: 52px;
+    border-radius: 100%;
+    padding: 0;
+    text-align: center
+}
+.social-links ul li a {
+    background: #99ceff;
+    color: #fff;
+}
+
+.social-links ul li a:hover, .social-links ul li a:focus {
+    background: #374048;
+}
+.social-links{
+    margin-top: 25px;
+}
+
+.social-links ul li+li {
+    margin-left: 15px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+.contactform{
+    padding: 0px 30px;
+}
+
+
+/* instagram feed style */
+
+.instagramfeeds  img{
+    width: 100%;
+}
+
+#rudr_instafeed{
+    list-style:none  
+  }
+  #rudr_instafeed li{
+    float:left;
+    width:200px;
+    height:200px;
+    margin:10px
+  }
+  #rudr_instafeed li img{
+    max-width:100%;
+    max-height:100%;
+  }
+
+  .instafeed{
+      display: flex;
+     justify-content: center;
+  }
+
+  .insticon{
+    font-size: 50px;
+    margin-right: 20px;
+  }
+
+
+  .modal-dialog{
+      max-width: 400px;
+      top: 15%;
+  }
+
+  .modal-header,.modal-footer{
+      border: none;
+  }
+
+  .modal-header h2{      
+    color: #6262c6;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 29%;
+  }
+
+  .modal-header h4{      
+    color: #6262c6;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 25%;
+  }
+
+  .modal-header .btn-close{
+    border: 1px solid #736e6e;
+    border-radius: 20px;
+  }
+
+  .login-form .form-group{
+    display: flex;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+  }
+
+  .login-form i{
+    font-size: 20px;
+    padding: 8px;
+    color: #93979b;
+  }
+  .login-form input{
+    border: none;
+  }
+
+  .login-form input:focus{
+      box-shadow: none;
+  }
+
+  .login-form .btn-warning{
+      margin: 0 32%;
+  }
+  .modal-header .btn-close{
+    font-size: 10px;
+    opacity: 1;
+  }
+  .borderError{
+      border: 1px solid red !important;
+  }
+  .error{
+      color: red !important;
+  }
+  .loginErrorDiv{
+    height: 25px;
+  }
+  .ajax-loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-bottom: 16px solid red;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+    display: none;
+  }
+  .loader {
+    border: 16px solid #f3f3f3;
+    position: absolute;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="Library/bootstrap/css/bootstrap.css">
+    <link href="Library/fontawesome/css/all.css" rel="stylesheet">
+    <script src="Library/jquery-3.6.0.min.js"></script>
+    <script src="Library/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="item.css">
+    <link rel="shortcut icon" href="image/ico/favicon.ico">
+    <script src="config.js"></script>
+    <script src="src/data.js"></script>
+    <script src="script.js"></script>
+    
+    <style>
+h3 {
+    font-size: 16px;
+    float: none;
+}
+
+.text-navy {
+    color: #1ab394;
+}
+
+.cart-product-imitation {
+  text-align: center;
+  padding-top: 30px;
+  height: 80px;
+  width: 80px;
+  background-color: #f8f8f9;
+}
+
+.product-imitation.xl {
+  padding: 120px 0;
+}
+
+.product-desc {
+  padding: 20px;
+  position: relative;
+}
+
+.ecommerce .tag-list {
+  padding: 0;
+}
+
+.ecommerce .fa-star {
+  color: #d1dade;
+}
+
+.ecommerce .fa-star.active {
+  color: #f8ac59;
+}
+
+.ecommerce .note-editor {
+  border: 1px solid #e7eaec;
+}
+
+table.shoping-cart-table {
+  margin-bottom: 0;
+}
+
+table.shoping-cart-table tr td {
+  border: none;
+  text-align: right;
+}
+
+table.shoping-cart-table tr td.desc,
+table.shoping-cart-table tr td:first-child {
+  text-align: left;
+}
+
+table.shoping-cart-table tr td:last-child {
+  width: 80px;
+}
+
+.ibox {
+  clear: both;
+  margin-bottom: 25px;
+  margin-top: 0;
+  padding: 0;
+}
+
+.ibox.collapsed .ibox-content {
+  display: none;
+}
+
+.ibox:after,
+.ibox:before {
+  display: table;
+}
+
+.ibox-title {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: #ffffff;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 3px 0 0;
+  color: inherit;
+  margin-bottom: 0;
+  padding: 14px 15px 7px;
+  min-height: 48px;
+}
+
+.ibox-content {
+  background-color: #ffffff;
+  color: inherit;
+  padding: 15px 20px 20px 20px;
+  border-color: #e7eaec;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0;
+}
+
+.ibox-footer {
+  color: inherit;
+  border-top: 1px solid #e7eaec;
+  font-size: 90%;
+  background: #ffffff;
+  padding: 10px 15px;
+}
+
+    .cartcontainer {
+    position: absolute;
+    top: 80px;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+    .itemImage {
+            height: 148px;
+            width: 111px;
+        } 
+
+    .form-contol {
+    padding: 0.2rem;
+}
+
+    .h2,
+    h2 {
+    font-size: 30px;
+    float: none;
+}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" style="padding: 0.5rem 0 0.5rem">
+        <div class="container">
+            <div class="col-md-2">
+        <a href="items.html" class="navbar-brand">
+                    <img class="default-logo responsive-img" src="image/logo.png" alt="logo">
+                </a>
+            </div>
+        </div>
+    </nav>
+   
+<div class="container cartcontainer">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <span class="pull-right">(<strong id="numberOfProduct"></strong>) items</span>
+                    <h5>Last 6 month order</h5>
+                </div>               
+               <div id="cart-item">
+
+               </div>
+                <!-- <div class="ibox-content">
+                    <button class="btn btn-primary pull-right" onclick="placeOrder()"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
+                    <button class="btn btn-white">
+                        <a href="items.html"><i class="fa fa-arrow-left"></i> Continue shopping</a>
+                    </button>
+
+                </div> -->
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Support</h5>
+                </div>
+                <div class="ibox-content text-center">
+                    <h3><i class="fa fa-envelope"></i> mohitmenghani6@gmail.com</h3>    
+                    <br>                
+                    <span class="small">
+                        Please Email us if you have any questions. 
+                    </span>  
+                </div>
+            </div>
+            <button class="btn btn-white">
+              <a href="items.html"><i class="fa fa-arrow-left"></i> Continue shopping</a>
+          </button>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<div class="modal" id="OrderPlaceSucc">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Login</h4> -->
+          <h2>Order Success</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+      
+        <!-- Modal body -->
+        <div class="modal-body" style="color: green;">
+          Your Order has placed successfully
+        </div>  
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" onclick="successOrder()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+      <!-- Modal -->      
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <!-- <h4 class="modal-title">Login</h4> -->
+              <h2>Login</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+          
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form class="login-form"> 
+                <div class="form-group" style="margin-bottom: 0px;">
+                  <i class="fa fa-user"></i>
+                    <input type="email" id="email" size="40" class="form-control" required="true" aria-invalid="false" placeholder="E-mail address">                    
+                </div>
+                <div class="error loginErrorDiv"></div>
+                <div class="form-group" style="margin-bottom: 0px;">                    
+                  <i class="fa fa-lock"></i>
+              <input type="password" id="password" size="40" class="form-control" required="true" aria-invalid="false" placeholder="Password">
+                </div>
+                <div class="error loginErrorDiv"></div>
+                <label style="margin-bottom: 20px">
+              <input type="checkbox" id="rememberme" name="remember"> Remember me</label>
+                <div class="error" style="text-align: center;margin-top: -8px;margin-bottom: 8px;"> </div>
+            <input type="button" value="Login" class="btn btn-block btn-warning" id="submitlogin">
+                <div class="ajax-loader"></div>                
+             </form>
+            </div>
+          
+            <!-- Modal footer -->
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div> -->
+          
+          </div>
+        </div>
+      </div>
+
+</body>
+
+</html>
+
+<script>
+   var catSubCat = "";
+    var TotalAmount = 0;
+    getOrder();
+    var filteredcart;
+  function getOrder() {
+    var token = localStorage.getItem("token");
+    var requestUrl = localStorage.getItem("apiServer") + 'api/Order';
+    $.ajax({
+        url: requestUrl,
+        headers: { "Authorization": "Bearer " + token },
+        success: function (result) {
+              var markupitems = '';
+              TotalAmount = 0;
+        count = 0;
+              for (var m = 0; m < result.length; m++) {    
+                var now = new Date(result[m].orderDate)
+                var date = now.toLocaleDateString();
+                var time = now.toLocaleTimeString();  
+          markupitems += '<div class="ibox-content" style="font-weight: 600;">Order reference number : &nbsp' + result[m].orderRefNumber + '<span style="float: right;">Order date : &nbsp' + date + ' &nbsp' + time + '</span></div>'
+          for (var i = 0; i < result[m].items.length; i++) {
+                count++;
+                filteredcart = result[m].items[i];
+                filteredcart.totalPrize = parseInt(filteredcart.quantity) * filteredcart.price * parseInt(filteredcart.prof_No_1);
+                var boxQnt = filteredcart.prof_No_1;//prof_No_1;
+                markupitems +=  '<div class="ibox-content">'
+                               +'<div class="table-responsive">'
+                               +'    <table class="table shoping-cart-table">'
+                               +'        <tbody>'
+                               +'        <tr>'
+                               +'            <td width="90">'
+                               +'     <img  src="'+ filteredcart.imagePath + filteredcart.imageName +'" class="image-base-imgResponsive itemImage" alt="image" >  '                               
+                               +'            </td>'
+                               +'            <td class="desc">'
+                               +'                <h3>'
+                               +'                    <a href="#" class="text-navy">'
+                               +                    filteredcart.shorT_DESCR
+                               +'                    </a>'
+                               +'                </h3>'
+                               +'                <p class="small">'
+                               +                 filteredcart.lonG_DESCR                               
+                               +'                </p>'
+                               +'                <dl class="small m-b-none">'
+                               +'                    <dt>Description lists</dt>'
+                               +'                    <dd>'+ filteredcart.descr+'</dd>'
+                               +'                </dl>'
+                               +'                <div class="m-t-sm" >'
+                               +'                   <dt>Box Quantity &nbsp'+boxQnt+'</dt>'
+                               +'                </div>'
+                               +'            </td>'
+                               +'            <td style="padding-top: 16px;">'
+                               +'                $ ' + Number(filteredcart.price).toFixed(2)
+                               +'            </td>'
+                               +'            <td width="65">'
+                               +'                <input type="number" id="item-' + i + '-quantity"  class="form-control" disabled  value="'+parseInt(filteredcart.quantity)+'">'
+                               +'            </td>'
+                               +'            <td style="padding-top: 13px;">'
+                               +'                <h4>'
+                               +'                   $' + filteredcart.totalPrize.toFixed(2)
+                               +'                </h4>'
+                               +'            </td>'
+                               +'        </tr>'
+                               +'        </tbody>'
+                               +'    </table>'
+                               +'</div>'
+                               +'</div>'
+              }
+              $('#cart-item').html(markupitems);
+              
+              $('#numberOfProduct').html(count);
+               }
+          }       
+    })    
+  }
+   
+
+    
+
+</script>
