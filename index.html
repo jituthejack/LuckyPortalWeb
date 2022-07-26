@@ -49,7 +49,7 @@
                <a title="Contact" href="#contact">Contact us</a>
               </li>
           </ul>
-          <button  class="header-menu-button btn btn-warning pull-right hidden-sm hidden-xs" id="ordernowbtn" data-bs-toggle="modal" data-bs-target="#myModal">
+        <button class="header-menu-button btn btn-warning pull-right hidden-sm hidden-xs" id="ordernowbtn" data-bs-toggle="modal" data-bs-target="#loginModal">
             Order Now
           </button>
           <!-- <a  class="header-menu-button btn btn-warning pull-right hidden-sm hidden-xs" data-toggle="modal" data-target="#login">Order Now</a> -->
@@ -224,7 +224,7 @@
 
 
       <!-- Modal -->      
-      <div class="modal" id="myModal" data-backdrop="static" data-keyboard="false">
+  <div class="modal" id="loginModal" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
           <div class="modal-content">
           
@@ -237,25 +237,64 @@
           
             <!-- Modal body -->
             <div class="modal-body">
-              <form class="login-form"> 
+              <form class="login-form">
                 <div class="form-group" style="margin-bottom: 0px;">
                   <i class="fa fa-user"></i>
-                    <input type="email" id="email" size="40" class="form-control" required="true" aria-invalid="false" placeholder="E-mail address">                    
+                  <input type="email" id="email" size="40" class="form-control" required="true" aria-invalid="false"
+                    placeholder="User Name">
                 </div>
                 <div class="error loginErrorDiv"></div>
-                <div class="form-group" style="margin-bottom: 0px;">                    
+                <div class="form-group" style="margin-bottom: 0px;">
                   <i class="fa fa-lock"></i>
-                  <input type="password" id="password" size="40"  class="form-control" required="true" aria-invalid="false" placeholder="Password">                  
+                  <input type="password" id="password" size="40" class="form-control" required="true" aria-invalid="false"
+                    placeholder="Password">
                 </div>
-                <div class="error loginErrorDiv"></div>
-                <label style="margin-bottom: 20px">
-                  <input type="checkbox" id="rememberme"   name="remember"> Remember me
-                </label>
-                <div class="error" style="text-align: center;margin-top: -8px;margin-bottom: 8px;"> </div>
-                <input type="button" value="Login" class="btn btn-block btn-warning" id="submitlogin" >
-                <div class="ajax-loader"></div>                
-             </form>
+                <div id ="loginError" class="error loginErrorDiv"></div>
+                <span class="psw">Forgot <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPassword">Password?</a></span>
+                <input type="button" value="Login" class="btn btn-block btn-warning" id="submitlogin">
+                <div class="ajax-loader"></div>
+              </form>
             </div>
+
+        <!-- Modal footer -->
+        <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div> -->
+
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="successMsg" role="successMsg">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="successMsgTxt" class="modal-title">Success</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="modal" id="forgotPassword" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Login</h4> -->
+          <h4>Request Password</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form class="login-form">
+            <div class="form-group" style="margin-bottom: 0px;">
+              <i class="fa fa-user"></i>
+              <input type="email" id="uName1" size="40" class="form-control" required="true" aria-invalid="false" placeholder="User Name">
+            </div>
+            <div id="requestError" class="error" style="text-align: center;margin-top: 15px;margin-bottom: 15px;"> </div>
+            <input type="button" value="Request" class="btn btn-block btn-warning" id="btnRequestPassword">
+            <div class="ajax-loader"></div>
+          </form>
+        </div>
           
             <!-- Modal footer -->
             <!-- <div class="modal-footer">
@@ -269,4 +308,5 @@
       
 
   </body>
+
 </html>

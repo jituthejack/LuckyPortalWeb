@@ -75,7 +75,7 @@ $(document).ready(function () {
     if (username == "") {
       error = true;
       $('#email').parent().addClass('borderError');
-      $('#email').parent().next().html('Please enter Email address')
+      $('#email').parent().next().html('Please enter User Name')
     }
     if (password == "") {
       error = true;
@@ -100,9 +100,12 @@ $(document).ready(function () {
       },
       data: JSON.stringify(loginRequest),
       success: function (result) {
+        $('#submitlogin').css("display", "block");
         $('#submitlogin').next().css("display", "none");
         if (result.statusCode == 200) {
-          $('#myModal').modal('hide');
+          $('#email').val('');
+          $('#password').val('');
+          $('#loginModal').modal('hide');
           localStorage.setItem("token", result.sessionID);
           localStorage.setItem("user", JSON.stringify(result.user));
           if (result.user.userRole === "SuperAdmin") {
@@ -110,20 +113,51 @@ $(document).ready(function () {
           } else {
             window.open('items.html', '_blank');
           }
-          $('#email').val('');
-          $('#password').val('');
         }
         if (result.statusCode == 404) {
           $('#email').parent().addClass('borderError');
           $('#password').parent().addClass('borderError');
-          $('#rememberme').parent().next().html(result.errorMessage);
-          $('#submitlogin').css("display", "block");
+          $('#loginError').html(result.errorMessage);
         }
       },
       error: function (result) {
-        $('#rememberme').parent().next().html('Error');
-        $('#submitlogin').css("display", "block");
-        $('#submitlogin').next().css("display", "none");
+          $('#loginError').html('There is some issue with sending your request');
+          $('#submitlogin').css("display", "block");
+          $('#submitlogin').next().css("display", "none");
+      }
+    });
+  });
+
+  $('#btnRequestPassword').click(function () {
+    var error = false;
+    var username = $('#uName1').val();
+    if (username == "") {
+      error = true;
+      $('#uName1').parent().addClass('borderError');
+      $('#uName1').parent().next().html('Please enter User Name')
+    }
+    if (error)
+      return;
+
+    $('#btnRequestPassword').css("display", "none");
+    $('#btnRequestPassword').next().css("display", "block");
+    var requestUrl = localStorage.getItem("apiServer") + 'api/lucky/RequestPassword?userName=' + username;
+    $.ajax({
+      url: requestUrl,
+      type: "POST",
+      success: function (result) {
+        $('#btnRequestPassword').next().css("display", "none");
+        $('#btnRequestPassword').css("display", "block");
+        $('#forgotPassword').modal('hide');
+        $('#successMsgTxt').html(result);
+        $('#successMsg').modal('show');
+
+      },
+      error: function (result) {
+        var error = result.responseJSON.error;
+        $('#requestError').html(error);
+        $('#btnRequestPassword').css("display", "block");
+        $('#btnRequestPassword').next().css("display", "none");
       }
     });
   });

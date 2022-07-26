@@ -201,16 +201,28 @@
     </nav>
     <div class="row" style="padding-top: 80px;">
         <div class="verticalTab col-md-2">
-            <button id="tbSalesPersons" class="parentTablinks" onclick="OnParentTabChange(event, 'salesPersons')">Sales
-                Person</button>
-            <button id="tbCustomers" class="parentTablinks"
-                onclick="OnParentTabChange(event, 'customers')">Customers</button>
-            <button id="tbCategories" class="parentTablinks"
-                onclick="OnParentTabChange(event, 'categories')">Categories</button>
+            <button id="tbRequest" class="parentTablinks" onclick="OnParentTabChange(event, 'requests')">Requests</button>
+            <button id="tbSalesPersons" class="parentTablinks" onclick="OnParentTabChange(event, 'salesPersons')">Sales Person</button>
+            <button id="tbCustomers" class="parentTablinks" onclick="OnParentTabChange(event, 'customers')">Customers</button>
+            <button id="tbCategories" class="parentTablinks" onclick="OnParentTabChange(event, 'categories')">Categories</button>
             <button id="tbOrdrs" class="parentTablinks" onclick="OnParentTabChange(event, 'orders')">Orders</button>
-            <button id="tbItems" class="parentTablinks" onclick="OnParentTabChange(event, 'Items')">Items</button>
+            <!-- <button id="tbItems" class="parentTablinks" onclick="OnParentTabChange(event, 'Items')">Items</button> -->
         </div>
         <div class="col-md-10">
+            <div id="requests" class="parentTabcontent">
+                <div class="horizontalTab">
+                    <button id="tbForgotPasswordRequest" class="childTablinks" onclick="OnChildTabChange(event, 'forgoPaswordRequest')">Forgot Password</button>
+                    <!-- <button id="tbAddressChangeRequest" class="childTablinks" onclick="OnChildTabChange(event, 'addressChangeRequest')">Address Change</button> -->
+                </div>
+                <div id="forgoPaswordRequest" class="childTabcontent">
+                    <div id="gdForgotPasswordRequest" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+                <div id="addressChangeRequest" class="childTabcontent">
+                    <div id="gdaddressChangeRequest" style="height: 100%" class="ag-theme-alpine">
+                    </div>
+                </div>
+            </div>
             <div id="salesPersons" class="parentTabcontent">
                 <div class="horizontalTab">
                     <button id="tbOnboardedSp" class="childTablinks" onclick="OnChildTabChange(event, 'onBoardedSp')">On Boarded</button>
@@ -271,12 +283,9 @@
             </div>
             <div id="categories" class="parentTabcontent">
                 <div class="horizontalTab">
-                    <button id="tbvisibleCategories" class="childTablinks"
-                        onclick="OnChildTabChange(event, 'visibleCategories')">Visible Categories</button>
-                    <button id="tbhiddenCategories" class="childTablinks"
-                        onclick="OnChildTabChange(event, 'hiddenCategories')">Hidden Categories</button>
-                    <button id="tballCategories" class="childTablinks"
-                        onclick="OnChildTabChange(event, 'allCategories')">All Categories</button>
+                    <button id="tbvisibleCategories" class="childTablinks" onclick="OnChildTabChange(event, 'visibleCategories')">Visible Categories</button>
+                    <button id="tbhiddenCategories" class="childTablinks" onclick="OnChildTabChange(event, 'hiddenCategories')">Hidden Categories</button>
+                    <button id="tballCategories" class="childTablinks" onclick="OnChildTabChange(event, 'allCategories')">All Categories</button>
                 </div>
                 <div id="visibleCategories" class="childTabcontent">
                     <div id="gdVisibleCat" style="height: 100%" class="ag-theme-alpine">
@@ -297,12 +306,12 @@
                     </div>
                 </div>
             </div>
-            <div id="items" class="parentTabcontent">
+            <!-- <div id="items" class="parentTabcontent">
                 <div id="allItems" class="childTabcontent">
                     <div id="gdAllCat" style="height: 100%" class="ag-theme-alpine">
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
         </div>

@@ -15,6 +15,18 @@ var defaultColDef = {
     resizable: true,
     sortable: true
 }
+var users = [
+    // using default ColDef
+    { field: 'userID', headerName: 'ID', type: 'numberColumn' },
+    { field: 'customer.cusT_NO', headerName: 'Customer No', type: 'numberColumn' },
+    { field: 'userName', type: 'User Name', headerName: 'User Name' },
+    { field: 'email', headerName: 'Email' },
+    { field: 'fName', headerName: 'First Name' },
+    { field: 'lName', headerName: 'Last Name' },
+    { field: 'customer.nam', headerName: 'Customer Name' },
+    { field: 'customer.phonE_1', headerName: 'Phone No' },
+    { field: 'customer.slS_REP', headerName: 'Sales Rep' },
+];
 
 var salesPerson = [
     // using default ColDef
@@ -103,7 +115,9 @@ function OnParentTabChange(evt, tabName) {
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 
-    if (tabName === "salesPersons") {
+    if (tabName === "requests") {
+        document.getElementById("tbForgotPasswordRequest").click();
+    } else if (tabName === "salesPersons") {
         document.getElementById("tbOnboardedSp").click();
     } else if (tabName === "customers") {
         document.getElementById("tbOnboardedCustomer").click();
@@ -138,7 +152,11 @@ function OnChildTabChange(evt, tabName) {
 }
 
 function getTabData(tabName) {
-    if (tabName == "onBoardedSp") {
+    if (tabName == "forgoPaswordRequest") {
+        GetForgotPasswordUser(gdOptRequestForgotPassword);
+    } else if (tabName == "addressChangeRequest") {
+        GetForgotPasswordUser();
+    } else if (tabName == "onBoardedSp") {
         GetUserData(gdOptOnBoardedSp, 4, 2);
     } else if (tabName == "inviteSp") {
         GetUserData(gdOptInviteSp, 4, 0);
@@ -174,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     InitGridDefination();
     // GetCategories();
     // GetOrders();
-    document.getElementById("tbSalesPersons").click();
+    document.getElementById("tbRequest").click();
     $(".modal").modal({
         show: false,
         backdrop: 'static'
@@ -581,7 +599,36 @@ function InitGridDefination() {
     InitCustomerGridDefination();
     InitCategoriesGridDefination();
     InitOrderGridDefination();
+    InitRequestGridDefination();
 }
+var gdOptRequestForgotPassword;
+function InitRequestGridDefination() {
+    var gridDiv;
+    gdOptRequestForgotPassword = {
+        // define grid columns
+        columnDefs: [...users],
+        // default ColDef, gets applied to every column
+        defaultColDef: defaultColDef,
+        // define specific column types
+        columnTypes: {
+            numberColumn: { width: 130, filter: 'agNumberColumnFilter' },
+            nonEditableColumn: { editable: false }
+        },
+        rowData: null,
+        components: {
+            btnResendInviteRenderer: BtnResendInviteRenderer
+        }
+    };
+    gdOptRequestForgotPassword.columnDefs.splice(0, 0, {
+        headerName: 'Action', cellRenderer: 'btnResendInviteRenderer', filter: false,
+        cellRendererParams: {
+            clicked: this.btnResendInviteHandler.bind(this),
+        },
+    })
+    gridDiv = document.querySelector('#gdForgotPasswordRequest');
+    new agGrid.Grid(gridDiv, gdOptRequestForgotPassword);
+}
+
 var gdOptOnBoardedSp, gdOptInviteSp, gdOptInvitedSp, gdOptDisabledSp, gdOptAllSp;
 function InitSalesPersonGridDefination() {
     var gridDiv;
@@ -1052,6 +1099,21 @@ function InitOrderGridDefination() {
     };
     gridDiv = document.querySelector('#gdOrders');
     new agGrid.Grid(gridDiv, gdOptOrders);
+}
+
+function GetForgotPasswordUser(grdOpt) {
+    var token = localStorage.getItem("token");
+    var requestUrl = localStorage.getItem("apiServer") + 'api/user/request';
+    $.ajax({
+        url: requestUrl,
+        type: "GET",
+        headers: { "Authorization": "Bearer " + token },
+        success: function (data) {
+            // windowHeight = window.innerHeight
+            grdOpt.api.setRowData(data);
+            grdOpt.api.sizeColumnsToFit();
+        }
+    });
 }
 
 function GetUserData(grdOpt, userType, userStatus) {
