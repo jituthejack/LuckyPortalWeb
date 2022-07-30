@@ -39,7 +39,7 @@ $(document).ready(function () {
 
   function initData() {
     var bgcount = localStorage.getItem('cartCount');
-    $('#cartCount').html(bgcount);
+    $('.cartCount').html(bgcount);
 
   }
 

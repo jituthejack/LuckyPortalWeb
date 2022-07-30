@@ -150,6 +150,12 @@ p {
     font-size: 30px;
     float: none;
 }
+
+.fa-collape-icon{
+    margin-left: 7px;
+    font-size: 1rem;
+    cursor: pointer;
+}
     </style>
 </head>
 
@@ -295,18 +301,24 @@ p {
         success: function (result) {
               var markupitems = '';
               TotalAmount = 0;
-        count = 0;
-              for (var m = 0; m < result.length; m++) {    
+        count = 0;        
+        var displayNone = '';
+             var upangleClass = 'fa-angle-down' 
+          if(result.length > 1){
+             displayNone = 'style="display: none;"';
+             upangleClass = 'fa-angle-up'
+          }
+          for (var m = 0; m < result.length; m++) {    
                 var now = new Date(result[m].orderDate)
                 var date = now.toLocaleDateString();
                 var time = now.toLocaleTimeString();  
-          markupitems += '<div class="ibox-content" style="font-weight: 600;">Order reference number : &nbsp' + result[m].orderRefNumber + '<span style="float: right;">Order date : &nbsp' + date + ' &nbsp' + time + '</span></div>'
+          markupitems += '<div style="border: 2px solid #b1d1ff;"><div class="ibox-content" style="font-weight: 600;">Order reference number : &nbsp' + result[m].orderRefNumber + '<span style="float: right;">Order date : &nbsp' + date + ' &nbsp' + time + '<i class="fa '+upangleClass+' fa-collape-icon" aria-hidden="true" onclick="collapseOrder(this)"></i></span></div>'
           for (var i = 0; i < result[m].items.length; i++) {
                 count++;
                 filteredcart = result[m].items[i];
                 filteredcart.totalPrize = parseInt(filteredcart.quantity) * filteredcart.price * parseInt(filteredcart.prof_No_1);
                 var boxQnt = filteredcart.prof_No_1;//prof_No_1;
-                markupitems +=  '<div class="ibox-content">'
+                markupitems +=  '<div class="ibox-content" '+displayNone+'>'
                                +'<div class="table-responsive">'
                                +'    <table class="table shoping-cart-table">'
                                +'        <tbody>'
@@ -348,12 +360,30 @@ p {
                                +'</div>'
                                +'</div>'
               }
+              markupitems += '</div>';
               $('#cart-item').html(markupitems);
               
               $('#numberOfProduct').html(count);
                }
           }       
     })    
+  }
+
+  function collapseOrder(_this){
+    var childnodes = _this.parentElement.parentElement.parentElement.childNodes;
+    if(_this.classList.contains('fa-angle-down')){
+      _this.classList.remove('fa-angle-down');
+      _this.classList.add('fa-angle-up');
+      for(var i=1;i<childnodes.length;i++){
+        childnodes[i].style.display = 'none';
+      }
+    }else{
+      _this.classList.remove('fa-angle-up');
+      _this.classList.add('fa-angle-down');
+      for(var i=1;i<childnodes.length;i++){
+        childnodes[i].style.display = 'block';
+      }
+    }
   }
    
 

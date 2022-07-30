@@ -313,6 +313,10 @@ footer {
     margin-right: 20px;
   }
 
+  .modal {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+  }
 
   .modal-dialog{
       max-width: 400px;
@@ -390,7 +394,7 @@ footer {
   }
   .loader {
     border: 16px solid #f3f3f3;
-    position: absolute;
+    position: inherit;
     border-radius: 50%;
     border-top: 16px solid #3498db;
     width: 120px;
@@ -409,3 +413,4 @@ footer {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+

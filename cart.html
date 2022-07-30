@@ -213,6 +213,21 @@
       font-size: 30px;
       float: none;
     }
+    .small-device{
+      display: none;
+    }
+    @media screen and (min-width:280px) and (max-width:800px){
+      .itemImage{
+        height: 50px;
+        width: 40px;
+      }
+      .large-device{
+        display: none;
+      }
+      .small-device{
+         display: block;
+       }
+    }
   </style>
 </head>
 
@@ -231,10 +246,26 @@
     <div class="wrapper wrapper-content animated fadeInRight">
       <div class="row">
         <div class="col-md-9">
-          <div class="ibox">
-            <div class="ibox-title">
+          <div class="ibox  ">
+            <div class="ibox-title" style="display: flow-root;">
               <!-- <span class="pull-right">(<strong id="numberOfProduct"></strong>) items</span> -->
-              <h5>Your cart</h5>
+              <div class="pull-left">
+                <h5>Your cart</h5>
+              </div>
+              <div class="pull-right">
+                <div style="display:flex;">                    
+                    <div>
+                      Total
+                    </div>
+                    <div style="margin-left: 5px;">
+                      <h5 class="font-bold TotalAmount"></h5>
+                    </div>
+                </div>
+                <div class="btn-group">
+                  <a id="placeOrder1" href="#" class="btn btn-primary btn-sm" onclick="placeOrderValidation()"><i
+                      class="fa fa-shopping-cart"></i> Place Order</a>
+                </div>
+              </div>
             </div>
           </div>
           <div class="ibox-content">
@@ -256,7 +287,7 @@
                 Total
               </div>
               <div>
-                <h2 class="font-bold" id="TotalAmount"></h2>
+                <h2 class="font-bold TotalAmount"></h2>
               </div>
 
               <hr>
@@ -512,17 +543,19 @@
             + '                <div class="m-t-sm" >'
             + '                   <dt style="display: flex;"><span style="padding: 8px 0px;">Quantity </span>  <input style="width: 90px;margin-left: 36px;" type="number" id="item-' + i + '-quantity"  class="form-control" onchange="quantityChange(' + i + ',' + itemid + ')"   value="' + parseInt(filteredcart[i].quantity) + '"></dt>'
             + '                </div>'
+            + '                  <div class="small-device"><dt>Unit Prize &nbsp&nbsp&nbsp&nbsp&nbsp' +'$' + Number(filteredcart[i].prC_1).toFixed(2)+'</dt></div>'
+            + '                  <div class="small-device"><dt>Total Prize &nbsp&nbsp&nbsp&nbsp' +'$' + filteredcart[i].totalPrize.toFixed(2)+'</dt></div>'
             + '                <div class="m-t-sm" >'
             + '                    <a class="text-muted" style=" cursor: pointer;" onclick="removeCart(' + i + ',' + itemid + ')"><i class="fa fa-trash"></i> Remove item</a>'
-            + '                </div>'
+            + '                </div>'           
             + '            </td>'
-            + '            <td style="padding-top: 16px;">'
+            + '            <td class="large-device" style="padding-top: 16px;">'
             + '                $ ' + Number(filteredcart[i].prC_1).toFixed(2)
             + '            </td>'
             //  +'            <td width="65">'
             //  +'                <input type="number" id="item-' + i + '-quantity"  class="form-control" onchange="quantityChange('+ i +',' + itemid + ')"   value="'+parseInt(filteredcart[i].quantity)+'">'
             //  +'            </td>'
-            + '            <td style="padding-top: 13px;">'
+            + '            <td class="large-device" style="padding-top: 13px;">'
             + '                <h4>'
             + '                   $' + filteredcart[i].totalPrize.toFixed(2)
             + '                </h4>'
@@ -534,7 +567,7 @@
             + '</div>'
         }
         $('#cart-item').html(markupitems);
-        $('#TotalAmount').html('$' + TotalAmount.toFixed(2));
+        $('.TotalAmount').html('$' + TotalAmount.toFixed(2));
       }
     })
   }
@@ -698,5 +731,6 @@
     show: false,
     backdrop: 'static'
   });
+
 
 </script>
