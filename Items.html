@@ -62,7 +62,8 @@
               <a href="order.html" title="Profile">My Orders</a>
             </li>
             <li id="menu-item-5" class="menu-item">
-              <a href="order.html" title="Password" data-bs-toggle="modal" data-bs-target="#passwordChange">Change Password</a>
+              <a href="order.html" title="Password" data-bs-toggle="modal" data-bs-target="#passwordChange">Change
+                Password</a>
             </li>
             <li id="menu-item-6" class="menu-item">
               <a title="Log out" onclick="logOutUser()">Log out</a>
@@ -103,42 +104,42 @@
       </ul>
     </div>
     <div class="container  d-md-none d-block ">
-      <div>        
+      <div>
         <div class="navbar-header">
-        <a href="items.html" class="navbar-brand">
-          <img class="default-logo responsive-img" src="image/logo.png" alt="logo">
-        </a>
+          <a href="items.html" class="navbar-brand">
+            <img class="default-logo responsive-img" src="image/logo.png" alt="logo">
+          </a>
         </div>
         <div class="pull-right d-flex">
-        <div>
-          <a href="#" class="icons">
-            <i class="fa fa-user" aria-hidden="true"></i>
-          </a>
-          <ul role="menu" class="sub-menu-profile dropdown-menu">
-            <li id="menu-item-5" class="menu-item">
-              <a title="Profile">Profile</a>
-            </li>
-            <li id="menu-item-5" class="menu-item">
-              <a href="order.html" title="Profile">My Orders</a>
-            </li>
-            <li id="menu-item-6" class="menu-item">
-              <a title="Log out" onclick="logOutUser()">Log out</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <a href="cart.html" class="icons">
-            <i class="fa fa-shopping-cart"></i>
-            <span class="desktop-badge desktop-melon cartCount">0</span>
-            <div class="cart-menu-text">Cart</div>
-          </a>
-        </div>
+          <div>
+            <a href="#" class="icons">
+              <i class="fa fa-user" aria-hidden="true"></i>
+            </a>
+            <ul role="menu" class="sub-menu-profile dropdown-menu">
+              <li id="menu-item-5" class="menu-item">
+                <a title="Profile">Profile</a>
+              </li>
+              <li id="menu-item-5" class="menu-item">
+                <a href="order.html" title="Profile">My Orders</a>
+              </li>
+              <li id="menu-item-6" class="menu-item">
+                <a title="Log out" onclick="logOutUser()">Log out</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <a href="cart.html" class="icons">
+              <i class="fa fa-shopping-cart"></i>
+              <span class="desktop-badge desktop-melon cartCount">0</span>
+              <div class="cart-menu-text">Cart</div>
+            </a>
+          </div>
 
         </div>
       </div>
       <div>
         <div class="desktop-query">
-          <input id="productSearch" placeholder="Search for products" class="desktop-searchBar" value="">
+          <input id="productSearch1" placeholder="Search for products" class="desktop-searchBar" value="">
           <a class="desktop-submit">
             <i class="fa fa-search sprites-search" aria-hidden="true"></i>
           </a>
@@ -147,13 +148,13 @@
           <ul class="search-group">
 
           </ul>
-        </div>        
+        </div>
       </div>
     </div>
   </nav>
   <div class="row">
     <div class="d-md-none d-block menuimage" title="Category List" onclick="showcategorylisting()">
-      <img class="menu-image" src="order/images/menu.png"/>
+      <img class="menu-image" src="order/images/menu.png" />
     </div>
     <div class="col-md-3 d-none d-md-block category-listing" style="margin-top:100px;">
       <ul id="menu-v">
@@ -221,53 +222,56 @@
       </div>
     </div>
   </div>
-  
+
   <div class="modal" id="passwordChange" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
-        <div class="modal-content">
+      <div class="modal-content">
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <!-- <h4 class="modal-title">Login</h4> -->
-                <h2 style="margin: auto;">Password Change</h2>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <form onsubmit="return validate()">
-                    <div class="row">
-                        <!-- <label style="width: 25%;text-align: right;margin-top: 10px;">Existing Password </label> -->
-                        <input placeholder="Enter existing password" required type="password" id="existingPass" size="40" class="form-control" required="true" aria-invalid="false" style="width: 65%;">
-                    </div>
-                    <div class="row">
-                        <!-- <label style="width: 25%;text-align: right;margin-top: 10px;"> New Password</label> -->
-                        <input placeholder="Enter new password" required type="password" id="newPass" size="40" class="form-control" required="true" aria-invalid="false" style="width: 65%;">
-                    </div>
-                    <div class="row">
-                      <!-- <label style="width: 25%;text-align: right;margin-top: 10px;"> New Password</label> -->
-                      <input placeholder="confirm new password" required type="password" id="newPass1" size="40" class="form-control" required="true" aria-invalid="false" style="width: 65%;">
-                    </div>
-                    <div id="valiationError" class="error loginErrorDiv"></div>
-                    <!-- <div id="userNameError" class="error" style="text-align: center;margin-top: -8px;margin-bottom: 8px;"> </div> -->
-                    <input type="submit" value="Change Password" class="btn btn-block btn-warning" id="passwordChange">
-                    <div id="saveLoader" style="top: 33%;left: 33%;"></div>
-                </form>
-            </div>
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- <h4 class="modal-title">Login</h4> -->
+          <h2 style="margin: auto;">Password Change</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form onsubmit="return validate()">
+            <div class="row">
+              <!-- <label style="width: 25%;text-align: right;margin-top: 10px;">Existing Password </label> -->
+              <input placeholder="Enter existing password" required type="password" id="existingPass" size="40"
+                class="form-control" required="true" aria-invalid="false" style="width: 65%;">
+            </div>
+            <div class="row">
+              <!-- <label style="width: 25%;text-align: right;margin-top: 10px;"> New Password</label> -->
+              <input placeholder="Enter new password" required type="password" id="newPass" size="40"
+                class="form-control" required="true" aria-invalid="false" style="width: 65%;">
+            </div>
+            <div class="row">
+              <!-- <label style="width: 25%;text-align: right;margin-top: 10px;"> New Password</label> -->
+              <input placeholder="confirm new password" required type="password" id="newPass1" size="40"
+                class="form-control" required="true" aria-invalid="false" style="width: 65%;">
+            </div>
+            <div id="valiationError" class="error loginErrorDiv"></div>
+            <!-- <div id="userNameError" class="error" style="text-align: center;margin-top: -8px;margin-bottom: 8px;"> </div> -->
+            <input type="submit" value="Change Password" class="btn btn-block btn-warning" id="passwordChange">
+            <div id="saveLoader" style="top: 33%;left: 33%;"></div>
+          </form>
+        </div>
+      </div>
     </div>
-</div>
-<div class="modal fade" id="successMsg" role="successMsg">
-  <div class="modal-dialog">
+  </div>
+  <div class="modal fade" id="successMsg" role="successMsg">
+    <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
-          <div class="modal-header">
-              <h4 id="successMsgTxt" class="modal-title">Success</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
+        <div class="modal-header">
+          <h4 id="successMsgTxt" class="modal-title">Success</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
       </div>
+    </div>
   </div>
-</div>
 
 </body>
 
@@ -291,47 +295,47 @@
     ChangePassword();
     return false;
   }
-function ChangePassword() {
+  function ChangePassword() {
 
     var existingPassHtml = $('#existingPass'),
-        newPassHtml = $('#newPass'),
-        newPass1Html = $('#newPass1'),
-        saveLoaderHtml = $('#saveLoader'),
-        extPass =  existingPassHtml.val(),
-        newPass =  newPassHtml.val(),
-        newPass1 =  newPass1Html.val();
-    
-        saveLoaderHtml.addClass('loader');
-        if(newPass!=newPass1){
-          $('#valiationError').html('Password & confirm Password are not equal');
-          saveLoaderHtml.removeClass('loader');
-          return;
-        }
-    var payload  = { 'NewPassword': newPass, 'Password': extPass }
+      newPassHtml = $('#newPass'),
+      newPass1Html = $('#newPass1'),
+      saveLoaderHtml = $('#saveLoader'),
+      extPass = existingPassHtml.val(),
+      newPass = newPassHtml.val(),
+      newPass1 = newPass1Html.val();
+
+    saveLoaderHtml.addClass('loader');
+    if (newPass != newPass1) {
+      $('#valiationError').html('Password & confirm Password are not equal');
+      saveLoaderHtml.removeClass('loader');
+      return;
+    }
+    var payload = { 'NewPassword': newPass, 'Password': extPass }
     var token = localStorage.getItem("token");
     var requestUrl = localStorage.getItem("apiServer") + 'api/lucky/changepassword';
-        $.ajax({
-          url: requestUrl,
-          type: "POST",
-          contentType: "application/json",
-          headers: { "Authorization": "Bearer " + token },
-          data: JSON.stringify(payload),
-          success: function (result) {
-            if(result & result.errorMessage){
-              $('#valiationError').html(result.errorMessage);
-            }else{
-              $('#successMsgTxt').html('Password change successfully. You will be redicted to login page');
-              $('#successMsg').modal('show');
-              setTimeout(function(){
-                logOutUser();
-              }, 5000);
-            }
-          },
-          error: function (result) {
-            $('#valiationError').html('Something went wrong.');
-          }
-        });
-}
+    $.ajax({
+      url: requestUrl,
+      type: "POST",
+      contentType: "application/json",
+      headers: { "Authorization": "Bearer " + token },
+      data: JSON.stringify(payload),
+      success: function (result) {
+        if (result & result.errorMessage) {
+          $('#valiationError').html(result.errorMessage);
+        } else {
+          $('#successMsgTxt').html('Password change successfully. You will be redicted to login page');
+          $('#successMsg').modal('show');
+          setTimeout(function () {
+            logOutUser();
+          }, 5000);
+        }
+      },
+      error: function (result) {
+        $('#valiationError').html('Something went wrong.');
+      }
+    });
+  }
 
 
   var catSubCat = "";
@@ -368,6 +372,7 @@ function ChangePassword() {
         var data = result;
         for (var i = 0; i < data.length; i++) {
           var item = data[i];
+          var itemBarcod = item.barcod === null ? item.iteM_NO : item.barcod;
           var itemNoStr = "'" + item.iteM_NO + "'";
           var itemid = "'" + item.id + "'";
           var boxQnt = item.proF_NO_1;
@@ -376,10 +381,10 @@ function ChangePassword() {
           }
           markupitems += '<div class="product">'
             + '<div class="image-box">'
-              + '<img class="images" src="' + item.imagePath + item.imageName + '" alt="" onerror="onImgError(this);"" width="100%" height="600">'
+            + '<img class="images" src="' + item.imagePath + item.imageName + '" alt="" onerror="onImgError(this);"" width="100%" height="600">'
             + '</div>'
             + '<div class="text-box">'
-            + '    <h2 class="item">' + item.shorT_DESCR + ' </h2>'
+            + '    <h2 class="item">' + itemBarcod + ' </h2>'
             + '    <h3 class="price">$ ' + Number(item.prC_1).toFixed(2) + '</h3>'
             + '    <p class="description ellipsis" title="' + item.lonG_DESCR + '">' + item.lonG_DESCR + '</p>'
             + '    <label>Box Quantity:</label>'
@@ -437,13 +442,16 @@ function ChangePassword() {
 
   function categoryClicked(e) {
     console.log(e.target.nodeName);
-    if($('.menuimage').css('display') == 'block'){
-      $('.category-listing').attr('style','display:none !important');
-    }    
+    if ($('.menuimage').css('display') == 'block') {
+      $('.category-listing').attr('style', 'display:none !important');
+    }
     if (e.target && e.target.nodeName == "LI") {
       catSubCat = e.target.id;
       markupitems = '';
       filter = '';
+      pageNo = 1;
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0;
       LoadItems();
     }
   }
@@ -548,18 +556,18 @@ function ChangePassword() {
   }
   ;
 
-  function showcategorylisting(){
-    if($('.category-listing').css('display') == 'none')
-    {
-       $('.category-listing').attr('style','display:block !important');
-    }else{
-      $('.category-listing').attr('style','display:none !important');
+  function showcategorylisting() {
+    if ($('.category-listing').css('display') == 'none') {
+      $('.category-listing').attr('style', 'display:block !important');
+    } else {
+      $('.category-listing').attr('style', 'display:none !important');
     }
   }
   // Init a timeout variable to be used below
   let timeout = null;
-  let input = document.getElementById('productSearch');
-  input.addEventListener('keyup', function (e) {
+  document.getElementById('productSearch1').addEventListener('input', serachitem);
+  document.getElementById('productSearch').addEventListener('input', serachitem);
+  function serachitem(e) {
     // Clear the timeout if it has already been set.
     // This will prevent the previous task from executing
     // if it has been less than <MILLISECONDS>
@@ -567,22 +575,22 @@ function ChangePassword() {
 
     // Make a new timeout set to go off in 1000ms (1 second)
     timeout = setTimeout(function () {
-      serachitem(input.value);
+      serachitemProcess(e.target.value);
     }, 1000);
-  });
-
-  function serachitem(value) {
+  }
+  function serachitemProcess(value) {
+    catSubCat = '';
+    markupitems = '';
+    pageNo = 1;
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0;
     if (value.length == 0) {
-      catSubCat = '';
       filter = '';
-      markupitems = '';
       LoadItems();
-      $('.searchIteam').hide();
+      // $('.searchIteam').hide();
 
     } else {
-      catSubCat = '';
       filter = value.toLowerCase();
-      markupitems = '';
       LoadItems();
     }
   }
@@ -592,7 +600,7 @@ function ChangePassword() {
     if (window.scrollY + windowHeight + 90 >= document.documentElement.scrollHeight) {
       windowHeight = 0;
       pageNo = pageNo + 1;
-      RowsCount = 100;
+      // RowsCount = 100;
       LoadItems();
     }
   })
@@ -635,31 +643,36 @@ function ChangePassword() {
   .dropdown-menu-text:hover {
     color: #ff3f6c;
   }
-  
-  @media screen and (min-width:280px) and (max-width:800px){
-    .product{
-        margin: 0 auto;
-        overflow: auto;
-        float: none;
-        width: 80%;
+
+  @media screen and (min-width:280px) and (max-width:800px) {
+    .product {
+      margin: 0 auto;
+      overflow: auto;
+      float: none;
+      width: 80%;
     }
-    .desktop-query>input.desktop-searchBar{
+
+    .desktop-query>input.desktop-searchBar {
       width: 77%;
       right: -34px;
 
     }
-    a.desktop-submit{
+
+    a.desktop-submit {
       left: -4px;
     }
-    .listing-section{
+
+    .listing-section {
       margin-top: 0px !important;
     }
-    .menu-image{
+
+    .menu-image {
       width: 15%;
-    height: 20%;
-    margin-top: 105px;
+      height: 20%;
+      margin-top: 105px;
     }
-    .category-listing{
+
+    .category-listing {
       margin-top: 0px !important;
       position: absolute;
       width: 80%;
@@ -667,5 +680,5 @@ function ChangePassword() {
       left: 12%;
       padding-left: 0px;
     }
- }
+  }
 </style>

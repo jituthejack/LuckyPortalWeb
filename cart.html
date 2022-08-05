@@ -385,7 +385,7 @@
           <h2>Processing your order</h2>
         </div>
         <div class="modal-body">
-          <div class="loader" style="margin:0 auto;"></div>
+          <div class="loader" style="margin:0 auto; position: inherit;"></div>
         </div>
       </div>
     </div>
@@ -512,52 +512,55 @@
 
         }
         for (var i = 0; i < result.length; i++) {
-          filteredcart[i].totalPrize = parseInt(filteredcart[i].quantity) * filteredcart[i].unitPrice * parseInt(filteredcart[i].prof_No_1);
-          TotalAmount = TotalAmount + parseFloat(filteredcart[i].totalPrize.toFixed(2));
-          var itemid = "'" + filteredcart[i].itemID + "'";
-          var boxQnt = filteredcart[i].prof_No_1;
+          var cartItem = filteredcart[i];
+          cartItem.totalPrize = parseInt(cartItem.quantity) * cartItem.unitPrice * parseInt(cartItem.proF_NO_1);
+          TotalAmount = TotalAmount + parseFloat(cartItem.totalPrize.toFixed(2));
+          var itemid = "'" + cartItem.itemID + "'";
+          var boxQnt = cartItem.proF_NO_1;
+          var itemBarcod = cartItem.barcod === null ?  cartItem.iteM_NO  :  cartItem.barcod  ;
+
           markupitems += '<div class="ibox-content">'
             + '<div class="table-responsive">'
             + '    <table class="table shoping-cart-table">'
             + '        <tbody>'
             + '        <tr>'
             + '            <td width="90">'
-            + '     <img  src="' + filteredcart[i].imagePath + filteredcart[i].imageName + '" class="image-base-imgResponsive itemImage" alt="image" >  '
+            + '     <img  src="' + cartItem.imagePath + cartItem.imageName + '" class="image-base-imgResponsive itemImage" alt="image" >  '
             + '            </td>'
             + '            <td class="desc">'
             + '                <h3>'
             + '                    <a href="#" class="text-navy">'
-            + filteredcart[i].shorT_DESCR
+            + itemBarcod
             + '                    </a>'
             + '                </h3>'
             + '                <p class="small">'
-            + filteredcart[i].lonG_DESCR
+            + cartItem.lonG_DESCR
             + '                </p>'
-            + '                <dl class="small m-b-none">'
-            + '                    <dt>Description lists</dt>'
-            + '                    <dd>' + filteredcart[i].descr + '</dd>'
-            + '                </dl>'
+            // + '                <dl class="small m-b-none">'
+            // + '                    <dt>Description lists</dt>'
+            // + '                    <dd>' + cartItem.descr + '</dd>'
+            // + '                </dl>'
             + '                <div class="m-t-sm" >'
-            + '                   <dt>Box Quantity &nbsp' + boxQnt + '</dt>'
+            + '                   <dt>Box Quantity &nbsp:&nbsp' + boxQnt + '</dt>'
             + '                </div>'
             + '                <div class="m-t-sm" >'
-            + '                   <dt style="display: flex;"><span style="padding: 8px 0px;">Quantity </span>  <input style="width: 90px;margin-left: 36px;" type="number" id="item-' + i + '-quantity"  class="form-control" onchange="quantityChange(' + i + ',' + itemid + ')"   value="' + parseInt(filteredcart[i].quantity) + '"></dt>'
+            + '                   <dt style="display: flex;"><span style="padding: 8px 0px;">Quantity </span>  <input style="width: 90px;margin-left: 36px;" type="number" id="item-' + i + '-quantity"  class="form-control" onchange="quantityChange(' + i + ',' + itemid + ')"   value="' + parseInt(cartItem.quantity) + '"></dt>'
             + '                </div>'
-            + '                  <div class="small-device"><dt>Unit Prize &nbsp&nbsp&nbsp&nbsp&nbsp' +'$' + Number(filteredcart[i].prC_1).toFixed(2)+'</dt></div>'
-            + '                  <div class="small-device"><dt>Total Prize &nbsp&nbsp&nbsp&nbsp' +'$' + filteredcart[i].totalPrize.toFixed(2)+'</dt></div>'
+            + '                  <div class="small-device"><dt>Unit Prize &nbsp&nbsp&nbsp&nbsp&nbsp' +'$' + Number(cartItem.prC_1).toFixed(2)+'</dt></div>'
+            + '                  <div class="small-device"><dt>Total Prize &nbsp&nbsp&nbsp&nbsp' +'$' + cartItem.totalPrize.toFixed(2)+'</dt></div>'
             + '                <div class="m-t-sm" >'
             + '                    <a class="text-muted" style=" cursor: pointer;" onclick="removeCart(' + i + ',' + itemid + ')"><i class="fa fa-trash"></i> Remove item</a>'
             + '                </div>'           
             + '            </td>'
             + '            <td class="large-device" style="padding-top: 16px;">'
-            + '                $ ' + Number(filteredcart[i].prC_1).toFixed(2)
+            + '                $ ' + Number(cartItem.prC_1).toFixed(2)
             + '            </td>'
             //  +'            <td width="65">'
-            //  +'                <input type="number" id="item-' + i + '-quantity"  class="form-control" onchange="quantityChange('+ i +',' + itemid + ')"   value="'+parseInt(filteredcart[i].quantity)+'">'
+            //  +'                <input type="number" id="item-' + i + '-quantity"  class="form-control" onchange="quantityChange('+ i +',' + itemid + ')"   value="'+parseInt(cartItem.quantity)+'">'
             //  +'            </td>'
             + '            <td class="large-device" style="padding-top: 13px;">'
             + '                <h4>'
-            + '                   $' + filteredcart[i].totalPrize.toFixed(2)
+            + '                   $' + cartItem.totalPrize.toFixed(2)
             + '                </h4>'
             + '            </td>'
             + '        </tr>'

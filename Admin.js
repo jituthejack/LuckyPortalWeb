@@ -62,11 +62,23 @@ var itemColumns = {
 
 }
 
+var OrderLines = [
+    // using default ColDef
+    { field: 'quantity', headerName: 'Quantity' },
+    { field: 'iteM_NO', headerName: 'Item No' },
+    { field: 'lonG_DESCR', headerName: 'Description' },
+    { field: 'barcod', headerName: 'Barcode' },
+    { field: 'prof_No_1', headerName: 'Box Quantity' },
+    { field: 'price', headerName: 'Price' },
+    { field: 'lineTotal', headerName: 'Line Total', type: 'numberColumn', valueFormatter: params => currencyFormatter(params.data.lineTotal, '$')
+},
+];
+
 var OrderColumns = [
     // using default ColDef
-    { field: 'orderID', headerName: 'Order ID', type: 'numberColumn' },
-    { field: 'apiCustomer.cusT_NO', type: 'numberColumn', headerName: 'Customer No' },
-    { field: 'apiCustomer.nam', type: 'numberColumn', headerName: 'Customer Name' },
+    { field: 'orderID', headerName: 'Order ID', type: 'numberColumn', cellRenderer: 'agGroupCellRenderer'  },
+    { field: 'apiCustomer.cusT_NO', headerName: 'Customer No' },
+    { field: 'apiCustomer.nam', headerName: 'Customer Name' },
     { field: 'User', headerName: 'User ID' },
     { field: 'orderRefNumber', headerName: 'Order Ref Number' },
     {
@@ -80,26 +92,34 @@ var OrderColumns = [
             return month + '/' + day + '/' + year;
         },
     },
-    { field: 'orderTotal', headerName: 'Order Total', type: 'numberColumn' },
     {
-        field: 'Email_IsCustomerCopySent', headerName: 'Customer Email', type: 'Boolean',
-        cellRenderer: params => {
-            return `<input type='checkbox' ${params.value ? 'checked' : ''} />`;
-        }
+        field: 'orderTotal', headerName: 'Order Total', type: 'numberColumn', valueFormatter: params => currencyFormatter(params.data.orderTotal, '$')
     },
-    {
-        field: 'Email_IsAdminCopySent', headerName: 'Admin Email', type: 'Boolean',
-        cellRenderer: params => {
-            return `<input type='checkbox' ${params.value ? 'checked' : ''} />`;
-        }
-    },
-    {
-        field: 'Email_IsSalesPersonCopySent', headerName: 'Sales Person Email', type: 'Boolean',
-        cellRenderer: params => {
-            return `<input type='checkbox' ${params.value ? 'checked' : ''} />`;
-        }
-    },
+    // {
+    //     field: 'Email_IsCustomerCopySent', headerName: 'Customer Email', type: 'Boolean',
+    //     cellRenderer: params => {
+    //         return `<input type='checkbox' ${params.value ? 'checked' : ''} />`;
+    //     }
+    // },
+    // {
+    //     field: 'Email_IsAdminCopySent', headerName: 'Admin Email', type: 'Boolean',
+    //     cellRenderer: params => {
+    //         return `<input type='checkbox' ${params.value ? 'checked' : ''} />`;
+    //     }
+    // },
+    // {
+    //     field: 'Email_IsSalesPersonCopySent', headerName: 'Sales Person Email', type: 'Boolean',
+    //     cellRenderer: params => {
+    //         return `<input type='checkbox' ${params.value ? 'checked' : ''} />`;
+    //     }
+    // },
 ];
+function currencyFormatter(currency, sign) {
+    var sansDec = currency.toFixed(2);
+    var formatted = sansDec.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return sign + `${formatted}`;
+}
+
 
 
 function OnParentTabChange(evt, tabName) {
@@ -319,7 +339,7 @@ function btnEditDetailsHandler(gridData) {
     saveLoaderHtml.removeClass('loader');
     $('.searchSp').hide();
     $('.search-group').html('');
-    
+
     firstNameHtml.val(fName);
     userIdHtml.val(userID);
     lastNameHtml.val(lName);
@@ -1060,6 +1080,7 @@ function InitOrderGridDefination() {
         // default ColDef, gets applied to every column
         defaultColDef: defaultColDef,
         // define specific column types
+        masterDetail: true,
         columnTypes: {
             numberColumn: { width: 130, filter: 'agNumberColumnFilter' },
             medalColumn: { width: 100, columnGroupShow: 'open', filter: false },
@@ -1092,11 +1113,32 @@ function InitOrderGridDefination() {
                 },
             },
         },
-        rowData: null,
-        components: {
-            btnDisableRenderer: BtnDisableRenderer
-        }
+        masterDetail: true,
+        detailCellRendererParams: {
+            // level 2 grid options
+            detailGridOptions: {
+                columnDefs: [...OrderLines],
+                defaultColDef: defaultColDef,
+            },
+            getDetailRowData: (params) => {
+                params.successCallback(params.data.items);
+            },
+        },
+        // rowData: null,
+        // components: {
+        //     btnDisableRenderer: BtnDisableRenderer
+        // },
+        // detailCellRendererParams: {
+        //     detailGridOptions: {
+        //         columnDefs: [...OrderLines],
+        //         groupDefaultExpanded: 1,
+        //     },
+        //     getDetailRowData: (params) => {
+        //         params.successCallback(params.data.children);
+        //       },
+        // }
     };
+
     gridDiv = document.querySelector('#gdOrders');
     new agGrid.Grid(gridDiv, gdOptOrders);
 }
