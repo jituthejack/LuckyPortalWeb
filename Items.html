@@ -71,27 +71,6 @@
           </ul>
         </li>
         <hr>
-        <!-- <li class="nav-item">
-                    <a href="#" class="icons">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <div class="cart-menu-text">Profile</div>
-                    </a>
-                    <ul role="menu" class="sub-menu-profile dropdown-menu">                
-                      <li id="menu-item-5" class="menu-item">
-                        <a title="Profile" class="dropdown-menu-text">Profile</a>
-                      </li>
-                      <li id="menu-item-6" class="menu-item">
-                        <a title="Log out" class="dropdown-menu-text">Log out</a>
-                      </li>
-                    </ul>
-                </li>
-                <hr>
-                <!-- <li class="nav-item">
-                    <a href="#" class="icons">
-                         <i class="fa fa-heart-o" aria-hidden="true"></i>
-                         <span class="desktop-badge desktop-melon">1</span>
-                    </a>
-                </li> -->
         <hr>
         <li class="nav-item">
           <a href="cart.html" class="icons">
@@ -152,11 +131,14 @@
       </div>
     </div>
   </nav>
-  <div class="row">
+  <div class="row">    
+    <div class="new-arrival-div" onclick="newarrival()">
+      <img class="new-arrival" src="order/images/new-arrival.png"/>
+    </div>
     <div class="d-md-none d-block menuimage" title="Category List" onclick="showcategorylisting()">
       <img class="menu-image" src="order/images/menu.png" />
     </div>
-    <div class="col-md-3 d-none d-md-block category-listing" style="margin-top:100px;">
+    <div class="col-md-3 d-none d-md-block category-listing navbar-fixed-top" style="margin-top:160px;overflow: auto;">
       <ul id="menu-v">
         <li>
           <a href="/cat/16/" class=" arrow">Braids &amp; Hair</a>
@@ -166,8 +148,21 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-9 col-12 listing-section" style="margin-top:100px;">
+    <div class="col-md-9 col-12" style="margin-left: 25%;">
+      <div class="filter-area">
+        <div class="search-controls">
+          <span class="search-controls-removable">
+            <span id="filter-caption"></span>  
+            <span id="filter-text"></span>
+          </span>
+          <div class="search-controls_filter_pills" onclick="removeFilter()">
+            <a class="fa fa-xmark"></a>
+          </div>
+        </div>
+      </div>
+      <div class="listing-section" style="margin-top:160px;">
 
+      </div>
     </div>
 
 
@@ -295,6 +290,7 @@
     ChangePassword();
     return false;
   }
+  $('.category-listing').height(window.innerHeight - 160);
   function ChangePassword() {
 
     var existingPassHtml = $('#existingPass'),
@@ -367,6 +363,7 @@
       success: function (result) {
         windowHeight = window.innerHeight
         if (result.length == 0) {
+          $('.listing-section').html('<h3>No Record found</h3>');
           return;
         }
         var data = result;
@@ -440,12 +437,15 @@
     });
   }
 
-  function categoryClicked(e) {
+  function categoryClicked(e) {    
     console.log(e.target.nodeName);
     if ($('.menuimage').css('display') == 'block') {
       $('.category-listing').attr('style', 'display:none !important');
     }
     if (e.target && e.target.nodeName == "LI") {
+      $('.filter-area').show();
+      $('#filter-caption').html('Category&nbsp: &nbsp');
+      $('#filter-text').html(e.target.innerHTML.split('<')[0]);
       catSubCat = e.target.id;
       markupitems = '';
       filter = '';
@@ -454,6 +454,16 @@
       document.documentElement.scrollTop = 0;
       LoadItems();
     }
+  }
+  function removeFilter(){
+    $('.filter-area').hide();
+      catSubCat = '';
+      markupitems = '';
+      filter = '';
+      pageNo = 1;
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0;
+      LoadItems();
   }
 
   var iteM_NO_Arr = [];
@@ -531,6 +541,17 @@
       }
     })
   }
+  function newarrival(){
+    var token = localStorage.getItem("token");
+    var requestUrl = localStorage.getItem("apiServer") + 'api/newarrival';
+    $.ajax({
+      url: requestUrl,
+      headers: { "Authorization": "Bearer " + token },
+      success: function (result) {
+        LoadItems();
+      }
+    })
+  }
 
   //var serachList = brandsList.Perfumes.concat(brandsList.makups, brandsList.Cosmetics);
   function serachitembind(list) {
@@ -546,7 +567,7 @@
   }
 
   function SearchItemClicked(e) {
-    console.log(e.target.nodeName)
+    console.log(e.target.nodeName);
     if (e.target && e.target.innerHTML) {
       catSubCat = '';
       filter = e.target.innerHTML;
@@ -568,6 +589,9 @@
   document.getElementById('productSearch1').addEventListener('input', serachitem);
   document.getElementById('productSearch').addEventListener('input', serachitem);
   function serachitem(e) {
+    $('.filter-area').show();
+      $('#filter-caption').html('Filter&nbsp: &nbsp');
+      $('#filter-text').html(e.target.value);
     // Clear the timeout if it has already been set.
     // This will prevent the previous task from executing
     // if it has been less than <MILLISECONDS>
@@ -579,6 +603,7 @@
     }, 1000);
   }
   function serachitemProcess(value) {
+    debugger;
     catSubCat = '';
     markupitems = '';
     pageNo = 1;
@@ -681,4 +706,62 @@
       padding-left: 0px;
     }
   }
+  
+  .new-arrival{
+    width: 25%;
+    margin-top: 7px;
+    }
+    .new-arrival-div{
+      height: 120px;
+       position: fixed;
+       top: 0;
+       margin-top: 7px;
+       left: 0;
+       z-index: 1;
+       cursor: pointer;
+    }
+    .filter-area{
+      margin-top: 63px;
+      height: 83px;
+      background: #ebecf0;
+      z-index: 1;
+      position: fixed;
+      width: 75%;
+      padding: 46px 8px;
+      display: none;
+    }
+    .search-controls{
+      background-color:  #fff;
+    border-radius: 4px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    position: absolute;
+    text-decoration: none;
+    }
+    .search-controls-removable{
+      border: 1px solid #e6e6e6;
+    border-bottom-left-radius:4px;
+    border-top-left-radius: 4px;
+    display: flex;
+    padding: 4px 8px;
+    }
+    .search-controls_filter_pills{
+      border: 1px solid #e6e6e6;
+    border-bottom-right-radius: 4px;
+    border-left: none;
+    border-top-right-radius: 4px;
+    color: #999;
+    display: block;
+    padding: 3px 8px;
+    text-align: center;
+    }
+    .fa-xmark{
+      color: #999;
+      cursor: pointer;
+    }
 </style>

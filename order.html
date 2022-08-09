@@ -25,6 +25,9 @@ h3 {
 .text-navy {
     color: #1ab394;
 }
+select{
+  height: 25px;
+}
 
 .cart-product-imitation {
   text-align: center;
@@ -178,6 +181,22 @@ p {
                 <div class="ibox-title">
                     <span class="pull-right">(<strong id="numberOfProduct"></strong>) items</span>
                     <h5>Last 6 month order</h5>
+                    <span>
+                      <select id="order_status_filter" onchange="orderFilter()">
+                        <option value="">Order status</option>
+                        <option value="Ordered">Ordered</option>
+                        <option value="Cancelled">Cancelled</option>
+                        <option value="Released">Released</option>
+                      </select>
+                    </span>
+                    <span>
+                      <select id="time_filter" onchange="orderFilter()">
+                        <option value="">Time Filter</option>
+                        <option value="Last 1 Month">Last 1 Month</option>
+                        <option value="Last 6 Month">Last 6 Month</option>
+                        <option value="Last 1 year">Last 1 year</option>
+                      </select>
+                    </span>
                 </div>               
                <div id="cart-item">
 
@@ -292,6 +311,15 @@ p {
     var TotalAmount = 0;
     getOrder();
     var filteredcart;
+    var orderstatus = '';
+    var timefilter = '';
+
+function orderFilter(){
+  orderstatus = $('#order_status_filter').val();
+  timefilter = $('#time_filter').val();
+  getOrder();
+}
+
   function getOrder() {
     var token = localStorage.getItem("token");
     var requestUrl = localStorage.getItem("apiServer") + 'api/Order';
@@ -308,11 +336,21 @@ p {
              displayNone = 'style="display: none;"';
              upangleClass = 'fa-angle-up'
           }
+          var statuscolor = '';
           for (var m = 0; m < result.length; m++) {    
                 var now = new Date(result[m].orderDate)
                 var date = now.toLocaleDateString();
                 var time = now.toLocaleTimeString();  
-          markupitems += '<div style="border: 2px solid #b1d1ff;"><div class="ibox-content" style="font-weight: 600;">Order reference number : &nbsp' + result[m].orderRefNumber + '<span style="float: right;">Order date : &nbsp' + date + ' &nbsp' + time + '<i class="fa '+upangleClass+' fa-collape-icon" aria-hidden="true" onclick="collapseOrder(this)"></i></span></div>'
+                result.status = 'Ordered';
+                if(result.status == 'Ordered')
+                {
+                  statuscolor = 'green';
+                }else if(result.status == 'Cancelled'){
+                  statuscolor = 'red';
+                }else{
+                  statuscolor = 'orange';
+                }
+          markupitems += '<div style="border: 2px solid #b1d1ff;"><div class="ibox-content" style="font-weight: 600;">Order reference number : &nbsp' + result[m].orderRefNumber+'<span style="margin-left:10%;color:'+statuscolor+'">'+result.status+'</span>' + '<span style="float: right;">Order date : &nbsp' + date + ' &nbsp' + time + '<i class="fa '+upangleClass+' fa-collape-icon" aria-hidden="true" onclick="collapseOrder(this)"></i></span></div>'
           for (var i = 0; i < result[m].items.length; i++) {
                 count++;
                 filteredcart = result[m].items[i];
