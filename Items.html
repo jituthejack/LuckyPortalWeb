@@ -132,8 +132,8 @@
     </div>
   </nav>
   <div class="row">    
-    <div class="new-arrival-div" onclick="newarrival()">
-      <img class="new-arrival" src="order/images/new-arrival.png"/>
+    <div class="new-arrival-div">
+      <img class="new-arrival"  onclick="newarrival()" src="order/images/new-arrival.png"/>
     </div>
     <div class="d-md-none d-block menuimage" title="Category List" onclick="showcategorylisting()">
       <img class="menu-image" src="order/images/menu.png" />
@@ -669,43 +669,6 @@
     color: #ff3f6c;
   }
 
-  @media screen and (min-width:280px) and (max-width:800px) {
-    .product {
-      margin: 0 auto;
-      overflow: auto;
-      float: none;
-      width: 80%;
-    }
-
-    .desktop-query>input.desktop-searchBar {
-      width: 77%;
-      right: -34px;
-
-    }
-
-    a.desktop-submit {
-      left: -4px;
-    }
-
-    .listing-section {
-      margin-top: 0px !important;
-    }
-
-    .menu-image {
-      width: 15%;
-      height: 20%;
-      margin-top: 105px;
-    }
-
-    .category-listing {
-      margin-top: 0px !important;
-      position: absolute;
-      width: 80%;
-      top: 97px;
-      left: 12%;
-      padding-left: 0px;
-    }
-  }
   
   .new-arrival{
     width: 25%;
@@ -764,4 +727,57 @@
       color: #999;
       cursor: pointer;
     }
+
+
+    @media screen and (min-width:280px) and (max-width:800px) {
+    .product {
+      margin: 0 auto;
+      overflow: auto;
+      float: none;
+      width: 80%;
+    }
+
+    .desktop-query>input.desktop-searchBar {
+      width: 77%;
+      right: -34px;
+
+    }
+
+    a.desktop-submit {
+      left: -4px;
+    }
+
+    .listing-section {
+      margin-top: 190px !important;
+    }
+
+    .menu-image {
+      width: 15%;
+      height: 20%;
+      margin-top: 135px;
+    }
+    .menuimage{
+      position: fixed;
+    }
+
+    .category-listing {
+      margin-top: 0px !important;
+      position: absolute;
+      width: 80%;
+      top: 200px;
+      left: 0px;
+      padding-left: 0px;
+    }
+    
+    .new-arrival-div{
+      margin-top: 82px;
+      left: -15px;
+      height: 59px;
+      top: 21px;
+    }
+    .new-arrival {   
+      margin-top: -14px;
+    }
+  }
+
 </style>

@@ -215,3 +215,8 @@ function myMap() {
   var marker = new google.maps.Marker({ position: myCenter });
   marker.setMap(map);
 }
+
+function signup(){
+  $('#loginModal').modal('hide');
+  window.location.href = '#contact'
+}

@@ -251,7 +251,12 @@
                     placeholder="Password">
                 </div>
                 <div id ="loginError" class="error loginErrorDiv"></div>
-                <span class="psw">Forgot <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPassword">Password?</a></span>
+                <div class="flex-row">                  
+                  <span class="psw">Forgot <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPassword">Password?</a></span>
+                  <span style="float:right;margin-right: 5%;color: #0d6efd;cursor: pointer;" onclick="signup()"> Sign up </span>
+
+
+                </div>
                 <input type="button" value="Login" class="btn btn-block btn-warning" id="submitlogin">
                 <div class="ajax-loader"></div>
               </form>
